@@ -1,24 +1,20 @@
-import BackgroundCircle from "./components/BackgroundCircle";
-import BackgroundRectangle from "./components/BackgroundRectangle";
+import Background from "./components/Background.jsx";
+import CurrentWeather from "./components/CurrentWeather.jsx";
 
 function App() {
   return (
-    //Main app container
-    <div className="min-h-screen bg-[#0D47A1]">
-      {/*Background*/}
-      <BackgroundCircle top={0} left={0} />
-      <BackgroundCircle top={35} left={30} />
-      <BackgroundCircle top={65} left={65} />
-      <BackgroundCircle top={100} left={100} />
+    <>
+      {/* Fixed background */}
+      <Background />
 
-      <BackgroundRectangle top={90} left={5} />
-      <BackgroundRectangle top={108} left={6} />
-      <BackgroundRectangle top={80} left={-4} />
-
-      <BackgroundRectangle top={5} left={95} />
-      <BackgroundRectangle top={12} left={104} />
-      <BackgroundRectangle top={-12} left={94} />
-    </div>
+      <CurrentWeather
+        city="Zenica"
+        image="/icons/CloudyDay.svg"
+        weatherText="Cloudy"
+        currentTemp="24°C"
+        maxMinTemp="25° 17°"
+      />
+    </>
   );
 }
 
