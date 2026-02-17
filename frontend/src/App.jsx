@@ -1,5 +1,6 @@
 import Background from "./components/Background.jsx";
 import CurrentWeather from "./components/CurrentWeather.jsx";
+import TodaysForecast from "./components/TodaysForecast.jsx";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         currentTemp="24°C"
         maxMinTemp="25° 17°"
       />
+
+      <TodaysForecast />
     </>
   );
 }
