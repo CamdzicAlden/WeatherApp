@@ -4,6 +4,8 @@ import Humidity from "./components/Humidity.jsx";
 import SevenDayForecast from "./components/SevenDayForecast.jsx";
 import TodaysForecast from "./components/TodaysForecast.jsx";
 import UVIndex from "./components/UVIndex.jsx";
+import Visibility from "./components/Visibility.jsx";
+import Wind from "./components/Wind.jsx";
 
 function App() {
   return (
@@ -30,8 +32,8 @@ function App() {
         </div>
 
         <div className="flex flex-col justify-center items-center gap-[2dvh]">
-          <UVIndex />
-          <Humidity />
+          <Visibility />
+          <Wind />
         </div>
       </div>
     </>
