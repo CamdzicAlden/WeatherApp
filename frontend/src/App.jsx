@@ -1,5 +1,6 @@
 import Background from "./components/Background.jsx";
 import CurrentWeather from "./components/CurrentWeather.jsx";
+import SevenDayForecast from "./components/SevenDayForecast.jsx";
 import TodaysForecast from "./components/TodaysForecast.jsx";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       />
 
       <TodaysForecast />
+      <SevenDayForecast />
     </>
   );
 }
