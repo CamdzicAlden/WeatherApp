@@ -5,7 +5,7 @@ import VerticalLine from "./VerticalLine";
 function TodaysForecast() {
   return (
     //Main flex container
-    <div className="flex flex-col gap-5 justify-start items-start w-[50dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[3%] py-[1.5%] text-[#fafafa]">
+    <div className="flex flex-col gap-5 justify-start items-start w-[50dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[3%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
       {/* Today's forecast paragraph */}
       <p
         className="text-[clamp(0.1rem,2dvh,10rem)]"
