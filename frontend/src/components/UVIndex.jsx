@@ -1,14 +1,19 @@
 import Card from "./Card";
 
+//Component for displaying UV index
 function UVIndex() {
   return (
+    //Custom card component
     <Card>
+      {/* Heading flex container */}
       <div className="flex justify-center items-center gap-1.5 w-[100%] h-[50%] ">
+        {/* Sun icon */}
         <img
           src="/icons/sun.svg"
           alt="I"
           className="h-[clamp(0.1rem,3dvh,10rem)] w-auto"
         />
+        {/* UV Index text */}
         <p
           className="text-[clamp(0.1rem,2.2dvh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
@@ -17,13 +22,18 @@ function UVIndex() {
         </p>
       </div>
 
+      {/* Data flex container */}
       <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%] px-[clamp(0.1rem,2dvw,10rem)]">
+        {/* Text info */}
         <p
           className="text-[clamp(0.1rem,2.5dvh,10rem)]"
           style={{ fontFamily: "RobotoBold" }}
         >
           Low
         </p>
+
+        {/* Progress bar */}
+        <div className="w-[100%] h-[10%] rounded-[99999px] bg-[linear-gradient(to_right,#378917_0%,#FF8C00_33%,#9E0101_66%,#460D7E_100%)]"></div>
       </div>
     </Card>
   );
