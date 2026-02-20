@@ -2,6 +2,9 @@ import Card from "./Card";
 
 //Component for displaying UV index
 function UVIndex() {
+  const uv = 2;
+  const position = (uv / 11) * 100;
+
   return (
     //Custom card component
     <Card>
@@ -33,7 +36,12 @@ function UVIndex() {
         </p>
 
         {/* Progress bar */}
-        <div className="w-[100%] h-[10%] rounded-[99999px] bg-[linear-gradient(to_right,#378917_0%,#FF8C00_33%,#9E0101_66%,#460D7E_100%)]"></div>
+        <div className="relative w-[100%] h-[10%] rounded-[99999px] bg-[linear-gradient(to_right,#378917_0%,#FF8C00_33%,#9E0101_66%,#460D7E_100%)]">
+          <div
+            className="absolute top-1/2 -translate-y-1/2 w-[2.5dvh] h-[2.5dvh] rounded-full border-[0.3dvh] border-[#fafafa]"
+            style={{ left: `${position}%`, transform: "translate (-50%)" }}
+          />
+        </div>
       </div>
     </Card>
   );
