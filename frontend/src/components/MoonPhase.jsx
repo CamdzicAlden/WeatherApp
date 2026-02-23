@@ -1,7 +1,17 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import moonImage from "../helpers/moonPhaseHelper";
 
 //Component for displaying moon phase
-function MoonPhase() {
+function MoonPhase({ moonPhase }) {
+  const [moonImg, setMoonImg] = useState("");
+
+  useEffect(() => {
+    setMoonImg(moonImage(moonPhase));
+  }, [moonPhase]);
+
+  if (!moonImg) return <p>Loading...</p>;
+
   return (
     //Calling custom card component
     <Card>
@@ -27,7 +37,7 @@ function MoonPhase() {
 
         {/* Moon phase image */}
         <img
-          src="/images/WaningCresent.svg"
+          src={moonImg}
           alt="I"
           className="h-[clamp(0.1rem,12dvh,10rem)] w-auto"
         />
@@ -37,7 +47,7 @@ function MoonPhase() {
           className="text-[clamp(0.1rem,2dvh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
-          Waning Cresent
+          {moonPhase}
         </p>
       </div>
     </Card>
