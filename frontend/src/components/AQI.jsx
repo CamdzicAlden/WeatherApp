@@ -1,7 +1,8 @@
+import getAQI from "../helpers/aqiHelper";
 import Card from "./Card";
 
 //Component for displaying air quality index
-function AQI() {
+function AQI({ index }) {
   return (
     //Custom card
     <Card>
@@ -22,12 +23,15 @@ function AQI() {
             className="text-[clamp(0.1rem,2.3dvh,10rem)]"
             style={{ fontFamily: "RobotoBold" }}
           >
-            Moderate (55)
+            {getAQI(index)}({index})
           </p>
 
           {/* Progress bar */}
           <div className="w-[100%] h-[2.7dvh] bg-[#A5A5A5] rounded-[99999px]">
-            <div className="w-[50%] h-[100%] bg-gradient-to-r from-[#FFEF60] to-[#E6DD27] rounded-[99999px]" />
+            <div
+              className="h-[100%] bg-gradient-to-r from-[#FFEF60] to-[#E6DD27] rounded-[99999px]"
+              style={{ width: `${index * 10}%` }}
+            />
           </div>
         </div>
       </div>

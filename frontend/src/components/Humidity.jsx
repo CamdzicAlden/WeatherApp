@@ -1,7 +1,7 @@
 import Card from "./Card";
 
 //Component for displaying humidity
-function Humidity() {
+function Humidity({ percent }) {
   return (
     //Custom card component
     <Card>
@@ -29,12 +29,15 @@ function Humidity() {
           className="text-[clamp(0.1rem,2.5dvh,10rem)]"
           style={{ fontFamily: "RobotoBold" }}
         >
-          50%
+          {percent}%
         </p>
 
         {/* Progress bar */}
         <div className="w-[100%] h-[15%] bg-[#A5A5A5] rounded-[99999px]">
-          <div className="w-[50%] h-[100%] bg-gradient-to-r from-[#6BFEF7] to-[#217DB6] rounded-[99999px]"></div>
+          <div
+            className="h-[100%] bg-gradient-to-r from-[#6BFEF7] to-[#217DB6] rounded-[99999px]"
+            style={{ width: `${percent}%` }}
+          ></div>
         </div>
       </div>
     </Card>

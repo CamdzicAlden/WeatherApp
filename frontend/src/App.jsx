@@ -77,8 +77,8 @@ function App() {
 
         <div className="flex flex-col justify-center items-center gap-[2dvh]">
           <UVIndex />
-          <Humidity />
-          <AQI />
+          <Humidity percent={weatherData.current.humidity} />
+          <AQI index={weatherData.current.air_quality["gb-defra-index"]} />
         </div>
 
         <div className="flex flex-col justify-center items-center gap-[2dvh]">
