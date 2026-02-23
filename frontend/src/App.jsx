@@ -62,7 +62,9 @@ function App() {
         city="Zenica"
         weatherCode={weatherData.current.condition.code}
         isDay={weatherData.current.is_day}
-        isFullMoon={false}
+        isFullMoon={
+          weatherData.astronomy.moon_phase === "Full Moon" ? true : false
+        }
         currentTemp={Math.round(weatherData.current.temp_c)}
         maxMinTemp="25° 17°"
       />
