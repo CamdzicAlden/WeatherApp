@@ -34,7 +34,7 @@ export async function fetchAstronomy(city) {
 
 export async function fetchHistory(city, dt) {
   const res = await fetch(
-    `${BASE_URL}/history.json?key=${API_KEY}&q=${city}&dt=${dt}`,
+    `https://cors-anywhere.herokuapp.com/${BASE_URL}/history.json?key=${API_KEY}&q=${city}&dt=${dt}`,
   );
 
   if (!res.ok) throw new Error("Failed to fetch data");

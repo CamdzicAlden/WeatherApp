@@ -1,7 +1,7 @@
 import Card from "./Card";
 
 //Component for displaying visibility
-function Visibility() {
+function Visibility({ range }) {
   return (
     //Calling custom card component
     <Card>
@@ -30,7 +30,7 @@ function Visibility() {
           className="text-[clamp(0.1rem,3dvh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
-          15.00km
+          {range}km
         </p>
       </div>
     </Card>
