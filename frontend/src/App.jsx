@@ -12,7 +12,47 @@ import UVIndex from "./components/UVIndex.jsx";
 import Visibility from "./components/Visibility.jsx";
 import Wind from "./components/Wind.jsx";
 
+import {
+  fetchAstronomy,
+  fetchCurrentWeather,
+  fetchForecast,
+  fetchHistory,
+} from "../api/weatherapi.js";
+import { useState, useEffect } from "react";
+
 function App() {
+  const [weatherData, setWeatherData] = useState(null);
+  const city = "Zenica";
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  const yyyy = yesterday.getFullYear();
+  const mm = String(yesterday.getMonth() + 1).padStart(2, "0");
+  const dd = String(yesterday.getDate()).padStart(2, "0");
+
+  const yesterdayDate = `${yyyy}-${mm}-${dd}`;
+
+  useEffect(() => {
+    Promise.all([
+      fetchCurrentWeather(city),
+      fetchForecast(city),
+      fetchAstronomy(city),
+      fetchHistory(city, yesterdayDate),
+    ])
+      .then(([currentData, forecastData, astronomyData, historyData]) => {
+        setWeatherData({
+          current: currentData.current,
+          forecast: forecastData.forecast.forecastday,
+          astronomy: astronomyData.astronomy.astro,
+          history: historyData.forecast.forecastday,
+        });
+      })
+      .catch(console.error);
+  }, [city]);
+
+  if (!weatherData) return <p>Loading...</p>;
+
   return (
     <>
       {/* Fixed background */}
@@ -20,9 +60,10 @@ function App() {
 
       <CurrentWeather
         city="Zenica"
-        image="/icons/CloudyDay.svg"
-        weatherText="Cloudy"
-        currentTemp="24°C"
+        weatherCode={weatherData.current.condition.code}
+        isDay={weatherData.current.is_day}
+        isFullMoon={false}
+        currentTemp={Math.round(weatherData.current.temp_c)}
         maxMinTemp="25° 17°"
       />
 
