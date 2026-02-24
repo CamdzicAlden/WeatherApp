@@ -9,13 +9,20 @@ function CurrentWeather({
   isDay,
   isFullMoon,
   currentTemp,
-  maxMinTemp,
+  today,
 }) {
   const [currentWeather, setCurrentWeather] = useState(null);
+  const [minTemp, setMinTemp] = useState(null);
+  const [maxTemp, setMaxTemp] = useState(null);
 
   useEffect(() => {
     setCurrentWeather(getImageAndText(weatherCode));
   }, [weatherCode, isDay, isFullMoon]);
+
+  useEffect(() => {
+    setMinTemp(Math.round(today.mintemp_c));
+    setMaxTemp(Math.round(today.maxtemp_c));
+  }, [today]);
 
   if (!currentWeather) return <p>Loading...</p>;
 
@@ -35,30 +42,32 @@ function CurrentWeather({
               : currentWeather.imageNight
         }
         alt="I"
-        className="w-[clamp(0.1rem,15dvw,20rem)] h-auto mt-[-3%] mb-[-5%]"
+        className="w-[clamp(0.1rem,15dvw,20rem)] h-auto mt-[-2%] mb-[-5%]"
       />
 
       {/* Paragraphs with weather information */}
       <p
         className="text-[clamp(0.1rem,4dvh,10rem)]"
-        style={{ fontFamily: "MontserratMedium", fontWeight: 500 }}
+        style={{ fontFamily: "MontserratMedium" }}
       >
         {currentWeather.text}
       </p>
 
-      <p
-        className="text-[clamp(0.1rem,8dvh,10rem)]"
-        style={{ fontFamily: "MontserratBold", fontWeight: 700 }}
-      >
-        {currentTemp}°C
-      </p>
+      <div className="flex flex-col justify-center items-center">
+        <p
+          className="text-[clamp(0.1rem,8dvh,10rem)]"
+          style={{ fontFamily: "MontserratBold" }}
+        >
+          {currentTemp}°C
+        </p>
 
-      <p
-        className="text-[clamp(0.1rem,3dvh,10rem)]"
-        style={{ fontFamily: "MontserratMedium", fontWeight: 500 }}
-      >
-        {maxMinTemp}
-      </p>
+        <p
+          className="text-[clamp(0.1rem,3dvh,10rem)]"
+          style={{ fontFamily: "MontserratMedium" }}
+        >
+          {maxTemp}°&nbsp;&nbsp;{minTemp}°
+        </p>
+      </div>
     </div>
   );
 }

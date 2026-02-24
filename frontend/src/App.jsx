@@ -43,7 +43,7 @@ function App() {
       .then(([currentData, forecastData, astronomyData, historyData]) => {
         setWeatherData({
           current: currentData.current,
-          forecast: forecastData.forecast.forecastday,
+          forecast: forecastData.forecast,
           astronomy: astronomyData.astronomy.astro,
           history: historyData.forecast.forecastday,
         });
@@ -52,6 +52,8 @@ function App() {
   }, [city]);
 
   if (!weatherData) return <p>Loading...</p>;
+
+  const today = weatherData.forecast.forecastday[0].day;
 
   return (
     <>
@@ -66,7 +68,7 @@ function App() {
           weatherData.astronomy.moon_phase === "Full Moon" ? true : false
         }
         currentTemp={Math.round(weatherData.current.temp_c)}
-        maxMinTemp="25° 17°"
+        today={today}
       />
 
       <TodaysForecast />
