@@ -85,7 +85,10 @@ function App() {
 
         <div className="flex flex-col justify-center items-center gap-[2dvh]">
           <Visibility range={weatherData.current.vis_km} />
-          <Wind />
+          <Wind
+            speed={weatherData.current.wind_kph}
+            direction={weatherData.current.wind_dir}
+          />
           <MoonPhase moonPhase={weatherData.astronomy.moon_phase} />
         </div>
       </div>

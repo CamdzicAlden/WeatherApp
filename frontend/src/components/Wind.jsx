@@ -1,7 +1,21 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
 
 //Component for displaying Wind info
-function Wind() {
+function Wind({ speed, direction }) {
+  const [windSpeed, setWindSpeed] = useState(0);
+  const [windDirection, setWindDirection] = useState(null);
+
+  useEffect(() => {
+    setWindSpeed(speed);
+  }, [speed]);
+
+  useEffect(() => {
+    const formattedDirection =
+      direction.length === 3 ? direction.slice(1) : direction;
+    setWindDirection(formattedDirection);
+  }, [direction]);
+
   return (
     //Custom card component
     <Card>
@@ -76,7 +90,7 @@ function Wind() {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center text-[#fafafa] text-[clamp(0.1rem,2dvh,10rem)]"
               style={{ fontFamily: "MontserratBold" }}
             >
-              <span>10</span>
+              <span>{windSpeed}</span>
               <span>km/h</span>
             </div>
 
@@ -84,44 +98,68 @@ function Wind() {
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-[17%] left-1/2 -translate-x-1/2 invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-[17%] left-1/2 -translate-x-1/2"
+              style={{
+                visibility: `${windDirection === "N" ? "visible" : "hidden"}`,
+              }}
             />
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-1/2 right-[17%] -translate-y-1/2 rotate-[90deg] invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-1/2 right-[17%] -translate-y-1/2 rotate-[90deg]"
+              style={{
+                visibility: `${windDirection === "E" ? "visible" : "hidden"}`,
+              }}
             />
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-1/2 left-[17%] -translate-y-1/2 rotate-[-90deg] invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-1/2 left-[17%] -translate-y-1/2 rotate-[-90deg]"
+              style={{
+                visibility: `${windDirection === "S" ? "visible" : "hidden"}`,
+              }}
             />
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute bottom-[17%] left-1/2 -translate-x-1/2 rotate-[180deg] invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute bottom-[17%] left-1/2 -translate-x-1/2 rotate-[180deg]"
+              style={{
+                visibility: `${windDirection === "W" ? "visible" : "hidden"}`,
+              }}
             />
 
             {/* NE NW SE SW  direction arrows*/}
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-[30%] right-[25%] rotate-[45deg] "
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-[30%] right-[25%] rotate-[45deg]"
+              style={{
+                visibility: `${windDirection === "NE" ? "visible" : "hidden"}`,
+              }}
             />
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute bottom-[30%] right-[25%] rotate-[135deg] invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute bottom-[30%] right-[25%] rotate-[135deg]"
+              style={{
+                visibility: `${windDirection === "SE" ? "visible" : "hidden"}`,
+              }}
             />
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute bottom-[30%] left-[25%] rotate-[225deg] invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute bottom-[30%] left-[25%] rotate-[225deg]"
+              style={{
+                visibility: `${windDirection === "SW" ? "visible" : "hidden"}`,
+              }}
             />
             <img
               src="/icons/DirectionArrow.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-[30%] left-[25%] rotate-[315deg] invisible"
+              className="h-[clamp(0.1rem,2dvh,10rem)] w-auto absolute top-[30%] left-[25%] rotate-[315deg]"
+              style={{
+                visibility: `${windDirection === "NW" ? "visible" : "hidden"}`,
+              }}
             />
           </div>
         </div>
