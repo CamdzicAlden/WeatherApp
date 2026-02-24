@@ -55,6 +55,11 @@ function App() {
 
   const today = weatherData.forecast.forecastday[0].day;
 
+  const todaysForecast = [
+    ...weatherData.forecast.forecastday[0].hour,
+    ...weatherData.forecast.forecastday[1].hour,
+  ];
+
   return (
     <>
       {/* Fixed background */}
@@ -71,7 +76,7 @@ function App() {
         today={today}
       />
 
-      <TodaysForecast />
+      <TodaysForecast todaysForecast={todaysForecast} />
 
       <div className="flex justify-center items-center w-[100%] h-[107dvh] my-[3%] gap-7">
         <div className="flex flex-col justify-center items-center gap-[2dvh]">

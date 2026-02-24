@@ -1,11 +1,29 @@
+import { useState, useEffect } from "react";
+import getImageAndText from "../helpers/weatherCodeConverter";
+
 //HourForecast component for displaying one hour forecast
-function HourForecast({ hours, image, temp, humidity }) {
+function HourForecast({
+  hours,
+  conditionCode,
+  temp,
+  humidity,
+  isDay,
+  isFullMoon,
+}) {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    setImage(getImageAndText(conditionCode));
+  }, [conditionCode]);
+
+  if (!image) return <p>Loading...</p>;
+
   return (
     //Main flex container
     <div className="flex flex-col gap-2.5 justify-center items-center">
       {/* Paragraph for hours */}
       <p
-        className="text-[clamp(0.1rem,2dvh,10rem)]"
+        className="text-[clamp(0.1rem,2dvh,10rem)] whitespace-nowrap"
         style={{ fontFamily: "Roboto" }}
       >
         {hours}
@@ -13,7 +31,13 @@ function HourForecast({ hours, image, temp, humidity }) {
 
       {/* Image showing weather */}
       <img
-        src={image}
+        src={
+          isDay
+            ? image.imageDay
+            : isFullMoon
+              ? image.imageNightFullMoon
+              : image.imageNight
+        }
         alt="I"
         className="w-[clamp(0.1rem,8dvw,10rem)] h-auto mt-[-20%] mb-[-25%] ml-[-15%]"
       />
