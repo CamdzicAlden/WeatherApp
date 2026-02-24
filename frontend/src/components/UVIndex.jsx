@@ -1,9 +1,16 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import returnMessage from "../helpers/uvIndexHelper";
 
 //Component for displaying UV index
-function UVIndex() {
-  const uv = 2;
-  const position = (uv / 11) * 100;
+function UVIndex({ uvIndex }) {
+  const [position, setPosition] = useState(null);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setPosition(Math.round(uvIndex / 0.11));
+    setMessage(returnMessage(Math.round(uvIndex)));
+  }, [uvIndex]);
 
   return (
     //Custom card component
@@ -32,7 +39,7 @@ function UVIndex() {
           className="text-[clamp(0.1rem,2.5dvh,10rem)]"
           style={{ fontFamily: "RobotoBold" }}
         >
-          Low
+          {message}
         </p>
 
         {/* Progress bar */}
