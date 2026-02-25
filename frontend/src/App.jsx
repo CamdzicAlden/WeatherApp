@@ -80,7 +80,10 @@ function App() {
 
       <div className="flex justify-center items-center w-[100%] h-[107dvh] my-[3%] gap-7">
         <div className="flex flex-col justify-center items-center gap-[2dvh]">
-          <SevenDayForecast />
+          <SevenDayForecast
+            weekForecast={weatherData.forecast.forecastday}
+            yesterday={weatherData.history[0].day}
+          />
           <SunriseSunset />
         </div>
 

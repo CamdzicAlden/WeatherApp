@@ -2,7 +2,7 @@ import DayForecast from "./DayForecast";
 import HorizontalLine from "./HorizontalLine";
 
 //Component for displaying 7 day forecast
-function SevenDayForecast() {
+function SevenDayForecast({ weekForecast, yesterday }) {
   return (
     //Main flex container
     <div className="flex flex-col justify-start items-start w-[38dvw] h-[70dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] px-[7%] py-[3%] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
@@ -17,25 +17,41 @@ function SevenDayForecast() {
       </div>
 
       <div className="w-[100%] h-[90%] flex flex-col justify-center items-center gap-3">
-        <DayForecast />
+        <DayForecast
+          dayNum={8}
+          rainChance={yesterday.avghumidity}
+          minTemp={Math.round(yesterday.mintemp_c)}
+          maxTemp={Math.round(yesterday.maxtemp_c)}
+          imageCode={yesterday.condition.code}
+        />
         <HorizontalLine />
 
-        <DayForecast />
-        <HorizontalLine />
+        {weekForecast.map((element, index) => {
+          const today = new Date();
+          const day = new Date(element.date_epoch * 1000);
 
-        <DayForecast />
-        <HorizontalLine />
+          const dayNum =
+            day.toDateString() !== today.toDateString()
+              ? new Date(element.date_epoch * 1000).getDay()
+              : 7;
 
-        <DayForecast />
-        <HorizontalLine />
+          return (
+            <div
+              key={index}
+              className="flex flex-col w-full items-center gap-3"
+            >
+              <DayForecast
+                dayNum={dayNum}
+                rainChance={element.day.avghumidity}
+                minTemp={Math.round(element.day.mintemp_c)}
+                maxTemp={Math.round(element.day.maxtemp_c)}
+                imageCode={element.day.condition.code}
+              />
 
-        <DayForecast />
-        <HorizontalLine />
-
-        <DayForecast />
-        <HorizontalLine />
-
-        <DayForecast />
+              {index !== weekForecast.length - 1 && <HorizontalLine />}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

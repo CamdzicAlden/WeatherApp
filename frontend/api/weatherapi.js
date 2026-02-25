@@ -12,7 +12,7 @@ export async function fetchCurrentWeather(city) {
   return data;
 }
 
-export async function fetchForecast(city, days = 7) {
+export async function fetchForecast(city, days = 6) {
   const res = await fetch(
     `${BASE_URL}/forecast.json?key=${API_KEY}&q=${city}&days=${days}`,
   );

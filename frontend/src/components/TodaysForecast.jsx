@@ -33,7 +33,7 @@ function TodaysForecast({ todaysForecast }) {
                 hours={formattedTime}
                 conditionCode={element.condition.code}
                 temp={Math.round(element.temp_c)}
-                humidity={element.humidity}
+                humidity={Math.round(element.humidity / 10)}
                 isDay={element.is_day}
                 isFullMoon={false}
               />
