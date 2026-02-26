@@ -6,7 +6,7 @@ function TodaysForecast({ todaysForecast }) {
   const now = Date.now();
   const upcomingHours = todaysForecast
     .filter((el) => el.time_epoch * 1000 > now)
-    .slice(0, 23);
+    .slice(0, 24);
 
   return (
     //Main flex container
