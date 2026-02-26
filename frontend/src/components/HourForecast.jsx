@@ -30,17 +30,19 @@ function HourForecast({
       </p>
 
       {/* Image showing weather */}
-      <img
-        src={
-          isDay
-            ? image.imageDay
-            : isFullMoon
-              ? image.imageNightFullMoon
-              : image.imageNight
-        }
-        alt="I"
-        className="w-[clamp(0.1rem,8dvw,10rem)] h-auto mt-[-20%] mb-[-25%] ml-[-15%]"
-      />
+      <div className="w-[clamp(0.1rem,5dvw,15rem)] h-auto flex justify-center items-center shrink-0">
+        <img
+          src={
+            isDay
+              ? image.imageDay
+              : isFullMoon
+                ? image.imageNightFullMoon
+                : image.imageNight
+          }
+          alt="I"
+          className="w-full h-auto mt-[-20%] mb-[-20%]"
+        />
+      </div>
 
       {/* Paragraph for temperature */}
       <p

@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.todaysForecastScroll::-webkit-scrollbar {
+  scrollbar-width: none;
+}

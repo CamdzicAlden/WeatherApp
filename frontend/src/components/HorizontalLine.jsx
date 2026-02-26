@@ -1,7 +1,7 @@
 //HorizontalLine component for separation
 function HorizontalLine() {
   return (
-    <div className="w-full h-[clamp(0rem,0.11dvh,10rem)] bg-[#fafafa] rounded-[9999999px]" />
+    <div className="w-full h-[clamp(0rem,0.1dvw,10rem)] bg-[#fafafa] rounded-[9999999px]" />
   );
 }
 

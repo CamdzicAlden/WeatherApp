@@ -19,7 +19,7 @@ function SevenDayForecast({ weekForecast, yesterday }) {
       <div className="w-[100%] h-[90%] flex flex-col justify-center items-center gap-3">
         <DayForecast
           dayNum={8}
-          rainChance={yesterday.avghumidity}
+          rainChance={yesterday.daily_chance_of_rain}
           minTemp={Math.round(yesterday.mintemp_c)}
           maxTemp={Math.round(yesterday.maxtemp_c)}
           imageCode={yesterday.condition.code}

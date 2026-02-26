@@ -10,17 +10,17 @@ function TodaysForecast({ todaysForecast }) {
 
   return (
     //Main flex container
-    <div className="flex flex-col gap-5 justify-start items-start w-[50dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[3%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
+    <div className="flex flex-col gap-5 justify-start items-center w-[50dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[3%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
       {/* Today's forecast paragraph */}
       <p
-        className="text-[clamp(0.1rem,2dvh,10rem)]"
+        className="text-[clamp(0.1rem,2dvh,10rem)] w-full text-left"
         style={{ fontFamily: "MontserratBold" }}
       >
         TODAY'S FORECAST
       </p>
 
       {/* Flex container for displaying 24 hour forecast */}
-      <div className="flex justify-start items-center gap-5 w-[100%] h-auto overflow-x-scroll">
+      <div className="todaysForecastScroll flex justify-start items-center gap-5 w-[100%] h-auto overflow-x-scroll">
         {upcomingHours.map((element, index) => {
           let hours = new Date(element.time_epoch * 1000).getHours();
           const timeSuffix = hours > 11 ? "PM" : "AM";
@@ -28,7 +28,7 @@ function TodaysForecast({ todaysForecast }) {
           const formattedTime = `${hours}:00 ${timeSuffix}`;
 
           return (
-            <div key={index} className="flex items-center gap-5">
+            <div key={index} className="flex items-center gap-5 h-auto">
               <HourForecast
                 hours={formattedTime}
                 conditionCode={element.condition.code}
