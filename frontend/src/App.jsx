@@ -84,7 +84,10 @@ function App() {
             weekForecast={weatherData.forecast.forecastday}
             yesterday={weatherData.history[0].day}
           />
-          <SunriseSunset />
+          <SunriseSunset
+            sunrise={weatherData.astronomy.sunrise}
+            sunset={weatherData.astronomy.sunset}
+          />
         </div>
 
         <div className="flex flex-col justify-center items-center gap-[2dvh]">

@@ -1,4 +1,4 @@
-function SunriseSunset() {
+function SunriseSunset({ sunrise, sunset }) {
   return (
     <div className="w-[38dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] py-[1.5%] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
       <div className="w-full h-full flex flex-col justify-center items-center gap-10">
@@ -16,15 +16,18 @@ function SunriseSunset() {
           />
         </svg>
 
-        <div className="w-full h-[40%] flex justify-between items-center px-[3dvw]">
+        <div
+          className="w-full h-[40%] flex justify-between items-center px-[3dvw]"
+          style={{ fontFamily: "Roboto" }}
+        >
           <div className="w-auto h-auto flex flex-col justify-center items-center gap-0.5">
             <p>Sunrise</p>
-            <p>06:52</p>
+            <p style={{ fontFamily: "RobotoBold" }}>{sunrise}</p>
           </div>
 
           <div className="w-auto h-auto flex flex-col justify-center items-center gap-0.5">
             <p>Sunset</p>
-            <p>06:52</p>
+            <p style={{ fontFamily: "RobotoBold" }}>{sunset}</p>
           </div>
         </div>
       </div>

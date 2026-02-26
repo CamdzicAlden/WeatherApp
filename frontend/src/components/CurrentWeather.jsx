@@ -42,7 +42,7 @@ function CurrentWeather({
               : currentWeather.imageNight
         }
         alt="I"
-        className="w-[clamp(0.1rem,20dvw,20rem)] h-auto mt-[-5%] mb-[-6%]"
+        className="w-[clamp(0.1rem,20dvw,20rem)] h-auto mt-[-2%] mb-[-6%]"
       />
 
       {/* Paragraphs with weather information */}
