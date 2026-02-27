@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+//Removih scrollbar from TodaysForecast component
 .todaysForecastScroll::-webkit-scrollbar {
   scrollbar-width: none;
 }

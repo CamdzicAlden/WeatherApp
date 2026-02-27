@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import getImageAndText from "../helpers/weatherCodeConverter";
 
+//Component for displaying singe day forecast
 function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
+  //Variable holding weather image and text
   const [imageText, setImageText] = useState(null);
 
+  //Mapping day numbers and names
   const weekDays = {
     0: "Sun",
     1: "Mon",
@@ -16,10 +19,12 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
     8: "Yesterday",
   };
 
+  //Update imageText every time imageCode changes
   useEffect(() => {
     setImageText(getImageAndText(imageCode));
   }, [imageCode]);
 
+  //Display loading if no data to show
   if (!imageText) return <p>Loading...</p>;
 
   return (
@@ -32,9 +37,9 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
       </p>
 
       {/* Whole right side container */}
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-between items-center w-[55%]">
         {/* Humidity and images container */}
-        <div className="flex justify-center items-center gap-6">
+        <div className="flex justify-between items-center w-[55%]">
           {/* Humidity container */}
           <div className="flex justify-center items-center gap-0.5">
             {/* Water drop image */}
@@ -65,7 +70,7 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
         </div>
 
         <p
-          className="text-[clamp(0.1rem,2dvh,10rem)]"
+          className="text-[clamp(0.1rem,2dvh,10rem)] w-[20%]"
           style={{ fontFamily: "Montserrat" }}
         >
           {maxTemp}° {minTemp}°

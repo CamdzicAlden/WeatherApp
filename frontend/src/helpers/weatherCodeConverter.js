@@ -1,3 +1,4 @@
+//Mapping api weather codes to categories
 const weatherCategories = {
   clear: [1000],
   cloudy: [1003, 1006, 1009, 1030, 1135, 1147],
@@ -13,6 +14,7 @@ const weatherCategories = {
   rainStorm: [1273, 1276, 1279, 1282],
 };
 
+//Mapping categories to objects with text and images
 const categoryImages = {
   clear: {
     text: "Clear",
@@ -52,9 +54,13 @@ const categoryImages = {
   },
 };
 
+//Method for getting image and text about weather
 export default function getImageAndText(code) {
+  //Looping through all weatherCategories
   for (const category in weatherCategories) {
+    //If category contains code
     if (weatherCategories[category].includes(code)) {
+      //Return object with data for that category
       return categoryImages[category];
     }
   }

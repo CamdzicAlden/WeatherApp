@@ -18,29 +18,36 @@ import {
   fetchForecast,
   fetchHistory,
 } from "../api/weatherapi.js";
+
 import { useState, useEffect } from "react";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const city = "Zenica";
 
+  //Getting yesterday date
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
+  //Converting date to yyyy-mm-dd format
   const yyyy = yesterday.getFullYear();
   const mm = String(yesterday.getMonth() + 1).padStart(2, "0");
   const dd = String(yesterday.getDate()).padStart(2, "0");
 
   const yesterdayDate = `${yyyy}-${mm}-${dd}`;
 
+  //useEffect runs every time city changes
   useEffect(() => {
+    //Method calling all apis at once and waiting all of them to resolve
     Promise.all([
       fetchCurrentWeather(city),
       fetchForecast(city),
       fetchAstronomy(city),
       fetchHistory(city, yesterdayDate),
     ])
+      //Destructure result array
       .then(([currentData, forecastData, astronomyData, historyData]) => {
+        //Update weatherData with object containing api data
         setWeatherData({
           current: currentData.current,
           forecast: forecastData.forecast,
@@ -51,10 +58,13 @@ function App() {
       .catch(console.error);
   }, [city]);
 
+  //Display loading while data is loading
   if (!weatherData) return <p>Loading...</p>;
 
+  //Getting current day forecast from result
   const today = weatherData.forecast.forecastday[0].day;
 
+  //Getting 2 days hour forecast
   const todaysForecast = [
     ...weatherData.forecast.forecastday[0].hour,
     ...weatherData.forecast.forecastday[1].hour,
@@ -76,7 +86,12 @@ function App() {
         today={today}
       />
 
-      <TodaysForecast todaysForecast={todaysForecast} />
+      <TodaysForecast
+        todaysForecast={todaysForecast}
+        isFullMoon={
+          weatherData.astronomy.moon_phase === "Full Moon" ? true : false
+        }
+      />
 
       <div className="flex justify-center items-center w-[100%] h-[107dvh] my-[3%] gap-7">
         <div className="flex flex-col justify-center items-center gap-[2dvh]">

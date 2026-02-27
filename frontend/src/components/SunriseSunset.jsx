@@ -1,7 +1,11 @@
+//Component for displaying sunrise and sunset with animation
 function SunriseSunset({ sunrise, sunset }) {
   return (
+    //Main container
     <div className="w-[38dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] py-[1.5%] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
+      {/* Container for svg and text */}
       <div className="w-full h-full flex flex-col justify-center items-center gap-10">
+        {/* Svg container */}
         <svg
           viewBox="0 0 100 50"
           className="w-full h-[60%]"
@@ -16,6 +20,7 @@ function SunriseSunset({ sunrise, sunset }) {
           />
         </svg>
 
+        {/* Container for sunrise/sunset text */}
         <div
           className="w-full h-[40%] flex justify-between items-center px-[3dvw]"
           style={{ fontFamily: "Roboto" }}

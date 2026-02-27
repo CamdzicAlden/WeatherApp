@@ -10,12 +10,15 @@ function HourForecast({
   isDay,
   isFullMoon,
 }) {
+  //Variable holding weather image and text object
   const [image, setImage] = useState(null);
 
+  //Update image every time weather code changes
   useEffect(() => {
     setImage(getImageAndText(conditionCode));
   }, [conditionCode]);
 
+  //Display loading if no data
   if (!image) return <p>Loading...</p>;
 
   return (
@@ -30,8 +33,9 @@ function HourForecast({
       </p>
 
       {/* Image showing weather */}
-      <div className="w-[clamp(0.1rem,5dvw,15rem)] h-auto flex justify-center items-center shrink-0">
+      <div className="w-[clamp(0.1rem,5.5dvw,15rem)] h-auto flex justify-center items-center shrink-0">
         <img
+          //Conditionaly set src attribute
           src={
             isDay
               ? image.imageDay
@@ -40,7 +44,7 @@ function HourForecast({
                 : image.imageNight
           }
           alt="I"
-          className="w-full h-auto mt-[-20%] mb-[-20%]"
+          className="w-full h-auto mt-[-15%] mb-[-20%]"
         />
       </div>
 
