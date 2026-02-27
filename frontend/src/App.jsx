@@ -39,24 +39,33 @@ function App() {
   //useEffect runs every time city changes
   useEffect(() => {
     //Method calling all apis at once and waiting all of them to resolve
-    Promise.all([
-      fetchCurrentWeather(city),
-      fetchForecast(city),
-      fetchAstronomy(city),
-      fetchHistory(city, yesterdayDate),
-    ])
-      //Destructure result array
-      .then(([currentData, forecastData, astronomyData, historyData]) => {
-        //Update weatherData with object containing api data
-        setWeatherData({
-          current: currentData.current,
-          forecast: forecastData.forecast,
-          astronomy: astronomyData.astronomy.astro,
-          history: historyData.forecast.forecastday,
-        });
-      })
-      .catch(console.error);
-  }, [city]);
+    const fetchData = () => {
+      Promise.all([
+        fetchCurrentWeather(city),
+        fetchForecast(city),
+        fetchAstronomy(city),
+        fetchHistory(city, yesterdayDate),
+      ])
+        //Destructure result array
+        .then(([currentData, forecastData, astronomyData, historyData]) => {
+          //Update weatherData with object containing api data
+          setWeatherData({
+            current: currentData.current,
+            forecast: forecastData.forecast,
+            astronomy: astronomyData.astronomy.astro,
+            history: historyData.forecast.forecastday,
+          });
+        })
+        .catch(console.error);
+    };
+
+    fetchData();
+
+    //Refetch API data every 3 minutes
+    const intervalID = setInterval(fetchData, 180000);
+
+    return () => clearInterval(intervalID);
+  }, [city, yesterdayDate]);
 
   //Display loading while data is loading
   if (!weatherData) return <p>Loading...</p>;
