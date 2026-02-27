@@ -31,7 +31,7 @@ function SocialMedia() {
           <img
             src={social.icon}
             alt=""
-            className="w-[clamp(0.1rem,1.5dvw,10rem)] h-auto"
+            className="w-[clamp(0.1rem,1.5dvw,10rem)] h-auto transform transition-transform duration-200 ease-in-out hover:scale-110 will-change-transform"
           />
         </a>
       ))}
