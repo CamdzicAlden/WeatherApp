@@ -48,7 +48,24 @@ function CurrentWeather({
               : currentWeather.imageNight
         }
         alt="I"
-        className="w-[clamp(0.1rem,20dvw,20rem)] h-auto mt-[-1%] mb-[-6%]"
+        className={"w-[clamp(0.1rem,20dvw,20rem)] h-auto mb-[-6%]"}
+        style={{
+          marginTop: `${
+            isDay
+              ? currentWeather.marginTopDay
+              : isFullMoon
+                ? currentWeather.marginTopNightFullMoon
+                : currentWeather.marginTopNight
+          }%`,
+          marginLeft: `${
+            isDay
+              ? currentWeather.marginLeftDay
+              : isFullMoon
+                ? currentWeather.marginLeftNightFullMoon
+                : currentWeather.marginLeftNight
+          }%`,
+          marginBottom: `${currentWeather.marginBottom}%`,
+        }}
       />
 
       {/* Paragraphs with weather text */}
