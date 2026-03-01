@@ -10,6 +10,7 @@ function CurrentWeather({
   isFullMoon,
   currentTemp,
   today,
+  onCityClicked,
 }) {
   //Variable holding object with weather condition text & images
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -35,7 +36,7 @@ function CurrentWeather({
     //Main flex container
     <div className="flex flex-col justify-evenly items-center gap-3 text-[#fafafa] mt-[2%]">
       {/* Location tag */}
-      <CityTag city={city} />
+      <CityTag city={city} onClick={onCityClicked} />
 
       {/* Current weather image */}
       <img

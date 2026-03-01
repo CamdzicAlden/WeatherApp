@@ -1,19 +1,27 @@
 //Component for displaying location
-function CityTag({ city }) {
+function CityTag({ city, onClick, inheritFont = false }) {
   return (
     //Main flex container
-    <div className="flex items-center justify-center gap-0.5 w-auto h-auto">
+    <div
+      className="flex items-center justify-center gap-0.5 w-auto h-auto cursor-pointer z-10"
+      onClick={onClick}
+    >
       {/* Location tag icon */}
       <img
         src="/icons/locationTag.svg"
         alt="L"
-        className="h-[clamp(0.1rem,3.3dvh,10rem)] w-auto"
+        style={{
+          height: `${!inheritFont ? "clamp(0.1rem,3.3dvh,10rem)" : "clamp(0.1rem,2.7dvh,10rem)"}`,
+          width: "auto",
+        }}
       />
 
       {/* City text */}
       <p
-        className="text-[clamp(0.1rem,3.3dvh,10rem)]"
-        style={{ fontFamily: "Montserrat" }}
+        style={{
+          fontFamily: "Montserrat",
+          fontSize: `${!inheritFont ? "clamp(0.1rem,3.3dvh,10rem)" : "inherit"}`,
+        }}
       >
         {city}
       </p>

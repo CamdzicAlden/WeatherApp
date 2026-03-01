@@ -20,10 +20,29 @@ import {
 } from "../api/weatherapi.js";
 
 import { useState, useEffect } from "react";
+import CityPopup from "./components/CityPopup.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
-  const city = "Zenica";
+  const [showPopup, setShowPopup] = useState(false);
+  const [city, setCity] = useState({
+    name: "Zenica",
+    lat: 44.2034,
+    lon: 17.9109,
+  });
+
+  //Disabling scrolling when popup is shown
+  useEffect(() => {
+    if (showPopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showPopup]);
 
   //Getting yesterday date
   const yesterday = new Date();
@@ -84,8 +103,18 @@ function App() {
       {/* Fixed background */}
       <Background />
 
+      {showPopup && (
+        <CityPopup
+          onClose={() => setShowPopup(false)}
+          onOK={(cityName) => {
+            setCity(cityName);
+            setShowPopup(false);
+          }}
+        />
+      )}
+
       <CurrentWeather
-        city="Zenica"
+        city={city.name}
         weatherCode={weatherData.current.condition.code}
         isDay={weatherData.current.is_day}
         isFullMoon={
@@ -93,6 +122,7 @@ function App() {
         }
         currentTemp={Math.round(weatherData.current.temp_c)}
         today={today}
+        onCityClicked={() => setShowPopup(true)}
       />
 
       <TodaysForecast
