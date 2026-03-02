@@ -1,8 +1,28 @@
 import getAQI from "../helpers/aqiHelper";
 import Card from "./Card";
+import { useEffect, useState, useRef } from "react";
 
 //Component for displaying air quality index
 function AQI({ index }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 1 },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     //Custom card
     <Card>
@@ -27,10 +47,13 @@ function AQI({ index }) {
           </p>
 
           {/* Progress bar */}
-          <div className="w-[100%] h-[2.7dvh] bg-[#A5A5A5] rounded-[99999px]">
+          <div
+            className="w-[100%] h-[2.7dvh] bg-[#A5A5A5] rounded-[99999px]"
+            ref={ref}
+          >
             <div
-              className="h-[100%] bg-gradient-to-r from-[#FFEF60] to-[#E6DD27] rounded-[99999px]"
-              style={{ width: `${index * 10}%` }}
+              className="h-[100%] bg-gradient-to-r from-[#FFEF60] to-[#E6DD27] rounded-[99999px] transition-all duration-1000 ease-out"
+              style={{ width: visible ? `${index * 10}%` : "0%" }}
             />
           </div>
         </div>
