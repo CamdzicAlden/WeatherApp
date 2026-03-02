@@ -42,15 +42,16 @@ function CityPopup({ onClose, onOK }) {
     //Overlay container preventing clicks
     <div className="fixed inset-0 w-full h-full z-50 bg-[rgba(13,71,161,0.8)] flex justify-center items-center">
       {/* Modal container */}
-      <div className="w-[40%] h-[70%] mx-auto my-auto rounded-[clamp(0.1rem,6dvw,10rem)] bg-[#1453B6] px-[5%] py-[3%]">
-        <div className="h-[90%] w-full flex flex-col justify-start items-center gap-8">
+      <div className="w-[40%] h-[70%] mx-auto my-auto rounded-[clamp(0.1rem,6dvw,10rem)] bg-[#1453B6] px-[5%] py-[3%] flex flex-col justify-between items-center">
+        <div className="h-[80%] w-full flex flex-col justify-start items-center gap-8">
           <SearchBar onTextChange={setSearchText} />
 
-          <div className="w-full h-full flex flex-col justify-start items-center gap-2">
+          <div className="w-full flex-1 min-h-0 flex flex-col justify-start items-center gap-2">
             <SearchResultHeader />
             <SearchResult
               resultData={results}
               onSelect={(city) => handleSelect(city)}
+              selectedCity={selectedCity}
             />
           </div>
         </div>

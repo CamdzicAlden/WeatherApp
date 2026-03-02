@@ -4,3 +4,12 @@
 .todaysForecastScroll::-webkit-scrollbar {
   scrollbar-width: none;
 }
+
+.searchResultScroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.searchResultScroll::-webkit-scrollbar-thumb {
+  background-color: #1968e4;
+  border-radius: 99999px;
+}
