@@ -22,6 +22,7 @@ import {
 import { useState, useEffect } from "react";
 import CityPopup from "./components/CityPopup.jsx";
 import { resolveUserLocation } from "../api/locationapi.js";
+import Loading from "./components/Loading.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -96,7 +97,16 @@ function App() {
   }, [city, yesterdayDate]);
 
   //Display loading while data is loading
-  if (!weatherData) return <p>Loading...</p>;
+  if (!weatherData) {
+    return (
+      <>
+        <Background blured={true} />
+        <div className="fixed inset-0 flex justify-center items-center">
+          <Loading />
+        </div>
+      </>
+    );
+  }
 
   //Getting current day forecast from result
   const today = weatherData.forecast.forecastday[0].day;

@@ -1,9 +1,11 @@
 import BackgroundCircle from "./BackgroundCircle.jsx";
 import BackgroundRectangle from "./BackgroundRectangle.jsx";
 
-function Background() {
+function Background({ blured = false }) {
   return (
-    <div className="fixed top-0 left-0 z-[-5] h-screen w-screen bg-[#0D47A1]">
+    <div
+      className={`fixed top-0 left-0 z-[-5] h-screen w-screen bg-[#0D47A1] ${blured ? "opacity-85" : "opacity-100"}`}
+    >
       {/*Background elements*/}
       <BackgroundCircle top={0} left={0} />
       <BackgroundCircle top={35} left={30} />
