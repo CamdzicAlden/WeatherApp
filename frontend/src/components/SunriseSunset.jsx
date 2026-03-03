@@ -6,9 +6,19 @@ function SunriseSunset({ sunrise, sunset }) {
   const [currentTime, setCurrentTime] = useState(0);
   const pathRef = useRef(null);
   const [sunPos, setSunPos] = useState({ x: 0, y: 0 });
+  const [sunrisePos, setSunrisePos] = useState(null);
+  const [sunsetPos, setSunsetPos] = useState(null);
 
   function getTimePosition(time) {
     return time / minutesInDay;
+  }
+
+  function convertToMin(time) {
+    let h = parseInt(time.slice(0, 2), 10);
+    const m = parseInt(time.slice(3, 5), 10);
+    h = time.slice(6, 8) === "PM" ? h + 12 : h;
+
+    return h * 60 + m;
   }
 
   useEffect(() => {
@@ -39,49 +49,61 @@ function SunriseSunset({ sunrise, sunset }) {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    setSunrisePos(Math.round(getTimePosition(convertToMin(sunrise)) * 100));
+    setSunsetPos(Math.round(getTimePosition(convertToMin(sunset)) * 100));
+  }, [sunrise, sunset]);
+
   return (
     //Main container
     <div className="w-[38dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] pb-[3%] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
       {/* Container for svg and text */}
       <div className="w-full h-full flex flex-col justify-center items-center gap-7">
-        {/* Svg container */}
-        <svg viewBox="0 0 100 50" className="w-full h-auto">
-          <defs>
-            <linearGradient
-              id="dayNightGradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="0%"
-            >
-              <stop offset="0%" stopColor="#444444" />
-              <stop offset="40%" stopColor="#F8A702" />
-              <stop offset="60%" stopColor="#F8A702" />
-              <stop offset="100%" stopColor="#444444" />
-            </linearGradient>
+        {sunrisePos !== null && sunsetPos !== null && (
+          // Svg container
+          <svg viewBox="0 0 100 50" className="w-full h-auto">
+            <defs>
+              <linearGradient
+                id="dayNightGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stopColor="#444444" />
+                <stop offset={`${sunrisePos}%`} stopColor="#F8A702" />
+                <stop offset={`${sunsetPos}%`} stopColor="#F8A702" />
+                <stop offset="100%" stopColor="#444444" />
+              </linearGradient>
 
-            <linearGradient
-              id="sunGradient"
-              x1="50%"
-              y1="0%"
-              x2="50%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#FFE600" />
-              <stop offset="100%" stopColor="#FF7A00" />
-            </linearGradient>
-          </defs>
+              <linearGradient
+                id="sunGradient"
+                x1="50%"
+                y1="0%"
+                x2="50%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#FFE600" />
+                <stop offset="100%" stopColor="#FF7A00" />
+              </linearGradient>
+            </defs>
 
-          <path
-            d="M 0 50 Q 50 0 100 50"
-            stroke="url(#dayNightGradient)"
-            strokeWidth="0.7"
-            strokeLinecap="round"
-            fill="none"
-            ref={pathRef}
-          />
-          <circle cx={sunPos.x} cy={sunPos.y} r="3" fill="url(#sunGradient)" />
-        </svg>
+            <path
+              d="M 0 50 Q 50 0 100 50"
+              stroke="url(#dayNightGradient)"
+              strokeWidth="0.7"
+              strokeLinecap="round"
+              fill="none"
+              ref={pathRef}
+            />
+            <circle
+              cx={sunPos.x}
+              cy={sunPos.y}
+              r="3"
+              fill="url(#sunGradient)"
+            />
+          </svg>
+        )}
 
         {/* Container for sunrise/sunset text */}
         <div
