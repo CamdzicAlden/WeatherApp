@@ -21,15 +21,21 @@ import {
 
 import { useState, useEffect } from "react";
 import CityPopup from "./components/CityPopup.jsx";
+import { resolveUserLocation } from "../api/locationapi.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [city, setCity] = useState({
-    name: "Zenica",
-    lat: 44.2034,
-    lon: 17.9109,
-  });
+  const [city, setCity] = useState({});
+
+  useEffect(() => {
+    const initLocation = async () => {
+      const coords = await resolveUserLocation();
+      setCity(coords);
+    };
+
+    initLocation();
+  }, []);
 
   //Disabling scrolling when popup is shown
   useEffect(() => {
@@ -57,6 +63,8 @@ function App() {
 
   //useEffect runs every time city changes
   useEffect(() => {
+    if (!city.lat || !city.lon) return;
+
     //Method calling all apis at once and waiting all of them to resolve
     const fetchData = () => {
       Promise.all([
@@ -73,6 +81,7 @@ function App() {
             forecast: forecastData.forecast,
             astronomy: astronomyData.astronomy.astro,
             history: historyData.forecast.forecastday,
+            cityName: currentData.location.name,
           });
         })
         .catch(console.error);
@@ -114,7 +123,7 @@ function App() {
       )}
 
       <CurrentWeather
-        city={city.name}
+        city={weatherData.cityName}
         weatherCode={weatherData.current.condition.code}
         isDay={weatherData.current.is_day}
         isFullMoon={
