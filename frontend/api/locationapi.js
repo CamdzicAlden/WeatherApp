@@ -1,3 +1,4 @@
+//Method for getting user coordinates based on golocation or IP address
 export async function resolveUserLocation() {
   try {
     // Try GPS first
@@ -10,8 +11,9 @@ export async function resolveUserLocation() {
       lon: position.coords.longitude,
     };
   } catch {
-    // Fallback to IP
+    // If user declines GPS
     try {
+      //Use ipapi.co api for getting coords from IP
       const res = await fetch("https://ipapi.co/json/");
       const data = await res.json();
 

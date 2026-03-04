@@ -1,5 +1,6 @@
 import RoundedButton from "./RoundedButton";
 import SearchBar from "./SearchBar";
+import Loading from "./Loading";
 
 import { useEffect, useState } from "react";
 import SearchResultHeader from "./SearchResultHeader";
@@ -48,11 +49,17 @@ function CityPopup({ onClose, onOK }) {
 
           <div className="w-full flex-1 min-h-0 flex flex-col justify-start items-center gap-2">
             <SearchResultHeader />
-            <SearchResult
-              resultData={results}
-              onSelect={(city) => handleSelect(city)}
-              selectedCity={selectedCity}
-            />
+            {loading ? (
+              <div className="w-full flex-1 flex justify-center items-center">
+                <Loading />
+              </div>
+            ) : (
+              <SearchResult
+                resultData={results}
+                onSelect={(city) => handleSelect(city)}
+                selectedCity={selectedCity}
+              />
+            )}
           </div>
         </div>
 

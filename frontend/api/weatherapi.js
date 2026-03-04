@@ -5,6 +5,7 @@ const BASE_URL = "https://api.weatherapi.com/v1";
 //Method for fetching current weather api
 export async function fetchCurrentWeather(location) {
   try {
+    //Extracting lat and lon from location object
     const { lat, lon } = location;
     //Async fetching
     const res = await fetch(
@@ -24,6 +25,7 @@ export async function fetchCurrentWeather(location) {
 //Method for fetching forecast weather
 export async function fetchForecast(location, days = 6) {
   try {
+    //Extracting lat and lon from location object
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
@@ -43,6 +45,7 @@ export async function fetchForecast(location, days = 6) {
 //Method for fetching astronomy details
 export async function fetchAstronomy(location) {
   try {
+    //Extracting lat and lon from location object
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
@@ -62,6 +65,7 @@ export async function fetchAstronomy(location) {
 //Method for fetching history
 export async function fetchHistory(location, dt) {
   try {
+    //Extracting lat and lon from location object
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
@@ -78,6 +82,7 @@ export async function fetchHistory(location, dt) {
   }
 }
 
+//Method for fetching cities for given search text
 export async function fetchSearch(city) {
   try {
     //Async fetch
