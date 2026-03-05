@@ -1,10 +1,12 @@
 import BackgroundCircle from "./BackgroundCircle.jsx";
 import BackgroundRectangle from "./BackgroundRectangle.jsx";
 
+//Component for displaying background
 function Background({ blured = false }) {
   return (
+    //Background container
     <div
-      className={`fixed top-0 left-0 z-[-5] h-screen w-screen bg-[#0D47A1] ${blured ? "opacity-85" : "opacity-100"}`}
+      className={`fixed inset-0 z-[-5] h-full w-full bg-[#0D47A1] ${blured ? "opacity-85" : "opacity-100"}`}
     >
       {/*Background elements*/}
       <BackgroundCircle top={0} left={0} />

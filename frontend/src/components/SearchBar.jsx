@@ -7,7 +7,7 @@ function SearchBar({ onTextChange }) {
       <img
         src="/icons/search.svg"
         alt="S"
-        className="h-[clamp(0.1rem,4dvh,10rem)] w-auto cursor-pointer"
+        className="h-[clamp(0.1rem,4dvh,10rem)] w-auto"
       />
       {/* Input field */}
       <input

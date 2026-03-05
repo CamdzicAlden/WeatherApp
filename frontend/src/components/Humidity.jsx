@@ -1,32 +1,18 @@
 import { useEffect, useState, useRef } from "react";
 import Card from "./Card";
+import { visibilityObserver } from "../helpers/visibilityObserver";
 
 //Component for displaying humidity
 function Humidity({ percent }) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 1 },
-    );
-
-    if (ref.current) observer.observe(ref.current);
-
-    return () => observer.disconnect();
-  }, []);
+  const visible = visibilityObserver(ref);
+  false;
 
   return (
     //Custom card component
     <Card>
       {/* Heading flex container */}
-      <div className="flex justify-center items-center gap-1.5 w-[100%] h-[50%] ">
+      <div className="flex justify-center items-center gap-1.5 w-[100%] h-[50%]">
         {/* Water drop icon */}
         <img
           src="/icons/water-drop.svg"
@@ -53,12 +39,9 @@ function Humidity({ percent }) {
         </p>
 
         {/* Progress bar */}
-        <div
-          className="w-[100%] h-[15%] bg-[#A5A5A5] rounded-[99999px]"
-          ref={ref}
-        >
+        <div className="w-[100%] h-[15%] bg-[#A5A5A5] rounded-full" ref={ref}>
           <div
-            className="h-[100%] bg-gradient-to-r from-[#6BFEF7] to-[#217DB6] rounded-[99999px] transition-all duration-1000 ease-out"
+            className="h-[100%] bg-gradient-to-r from-[#6BFEF7] to-[#217DB6] rounded-full width transition-all duration-1000 ease-out will-change-width"
             style={{ width: visible ? `${percent}%` : "0%" }}
           ></div>
         </div>

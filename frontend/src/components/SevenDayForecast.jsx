@@ -9,7 +9,7 @@ function SevenDayForecast({ weekForecast, yesterday }) {
       {/* 7-DAY FORECAST text container */}
       <div className="h-[10%] w-[100%] flex justify-start items-center">
         <p
-          className="text-[clamp(0.1rem,2dvh,10rem)]"
+          className="text-[clamp(0.1rem,2dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
           style={{ fontFamily: "MontserratBold" }}
         >
           7-DAY FORECAST
@@ -17,7 +17,7 @@ function SevenDayForecast({ weekForecast, yesterday }) {
       </div>
 
       {/* 7-Day forecast */}
-      <div className="w-[100%] h-[90%] flex flex-col justify-center items-center gap-[clamp(0.1rem,1dvh,10rem)]">
+      <div className="w-[100%] h-[90%] flex flex-col justify-center items-center">
         {/* Yesterday */}
         <DayForecast
           dayNum={8}
@@ -44,7 +44,7 @@ function SevenDayForecast({ weekForecast, yesterday }) {
             //Container for DayForecast and HorizontalLine
             <div
               key={index}
-              className="flex flex-col w-full items-start gap-[clamp(0.1rem,1dvh,10rem)]"
+              className="flex flex-col w-full h-auto justify-center items-center gap-[clamp(0.1rem,1dvh,10rem)]"
             >
               <DayForecast
                 dayNum={dayNum}

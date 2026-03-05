@@ -4,7 +4,7 @@ import CityTag from "./CityTag";
 function SearchResult({ resultData = [], onSelect, selectedCity }) {
   return (
     //Main flex container
-    <div className="searchResultScroll w-full flex-1 min-h-0 flex flex-col justify-start gap-3 items-center text-[#fafafa] text-[clamp(0.1rem,2.7dvh,10rem)] overflow-y-auto">
+    <div className="searchResultScroll w-full flex-1 min-h-0 flex flex-col justify-start items-center gap-3 text-[#fafafa] text-[clamp(0.1rem,2.7dvh,10rem)] overflow-y-auto [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]">
       {!resultData.length ? (
         <div className="w-full h-full flex justify-center items-center">
           No data to show!

@@ -5,6 +5,7 @@ const aqiValues = {
   "Very High": [10],
 };
 
+//Function for getting text from aqi index
 export default function getAQI(index) {
   for (const value in aqiValues) {
     if (aqiValues[value].includes(index)) return value;

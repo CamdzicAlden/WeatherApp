@@ -1,5 +1,7 @@
+//Component for displaying loading circle
 function Loading() {
   return (
+    //Svg container
     <svg viewBox="0 0 100 100" className="w-[11%] h-auto">
       <circle
         cx={50}

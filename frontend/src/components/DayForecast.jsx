@@ -28,7 +28,9 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
   if (!imageText) return <p>Loading...</p>;
 
   return (
-    <div className="flex justify-between items-center w-[100%] h-auto">
+    //Main flex container
+    <div className="flex justify-between items-center w-[100%] h-auto [text-shadow:0_clamp(0.05rem,0.2dvh,5rem)_clamp(0.05rem,0.3dvh,5rem)_rgba(0,0,0,0.25)] mb-[-2%]">
+      {/* Weekday text */}
       <p
         className="text-[clamp(0.1rem,2.2dvh,10rem)]"
         style={{ fontFamily: "MontserratMedium" }}
@@ -37,9 +39,9 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
       </p>
 
       {/* Whole right side container */}
-      <div className="flex justify-between items-center w-[55%]">
+      <div className="flex justify-between items-center w-[60%]">
         {/* Humidity and images container */}
-        <div className="flex justify-between items-center w-[55%]">
+        <div className="flex justify-between items-center w-[60%]">
           {/* Humidity container */}
           <div className="flex justify-center items-center gap-0.5">
             {/* Water drop image */}
@@ -57,16 +59,23 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
             </p>
           </div>
 
-          <img
-            src={imageText.imageDay}
-            alt="I"
-            className="h-[clamp(0.1rem,9dvh,10rem)] w-auto m-[-10%]"
-          />
-          <img
-            src={imageText.imageNight}
-            alt="I"
-            className="h-[clamp(0.1rem,9dvh,10rem)] w-auto m-[-10%]"
-          />
+          <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center h-[8dvh] w-[8dvh] ">
+              <img
+                src={imageText.imageDay}
+                alt="Day Icon"
+                className="h-full w-full object-contain object-center"
+              />
+            </div>
+
+            <div className="flex items-center justify-center h-[8dvh] w-[8dvh]">
+              <img
+                src={imageText.imageNight}
+                alt="Night Icon"
+                className="h-full w-full object-contain object-center"
+              />
+            </div>
+          </div>
         </div>
 
         <p

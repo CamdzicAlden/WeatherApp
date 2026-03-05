@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+
+//Importing components
 import AQI from "./components/AQI.jsx";
 import Background from "./components/Background.jsx";
 import Copyright from "./components/Copyright.jsx";
@@ -11,24 +14,19 @@ import TodaysForecast from "./components/TodaysForecast.jsx";
 import UVIndex from "./components/UVIndex.jsx";
 import Visibility from "./components/Visibility.jsx";
 import Wind from "./components/Wind.jsx";
-
-import {
-  fetchAstronomy,
-  fetchCurrentWeather,
-  fetchForecast,
-  fetchHistory,
-} from "../api/weatherapi.js";
-
-import { useState, useEffect } from "react";
 import CityPopup from "./components/CityPopup.jsx";
-import { resolveUserLocation } from "../api/locationapi.js";
 import Loading from "./components/Loading.jsx";
 
+//Importing method for fetching users location
+import { resolveUserLocation } from "../api/locationapi.js";
+import fetchWeather from "./helpers/fetchWeather.js";
+
 function App() {
-  const [weatherData, setWeatherData] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [city, setCity] = useState({});
+  const { weatherData, loading } = fetchWeather(city);
 
+  //Get initial user location on load
   useEffect(() => {
     const initLocation = async () => {
       const coords = await resolveUserLocation();
@@ -51,53 +49,8 @@ function App() {
     };
   }, [showPopup]);
 
-  //Getting yesterday date
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-
-  //Converting date to yyyy-mm-dd format
-  const yyyy = yesterday.getFullYear();
-  const mm = String(yesterday.getMonth() + 1).padStart(2, "0");
-  const dd = String(yesterday.getDate()).padStart(2, "0");
-
-  const yesterdayDate = `${yyyy}-${mm}-${dd}`;
-
-  //useEffect runs every time city changes
-  useEffect(() => {
-    if (!city.lat || !city.lon) return;
-
-    //Method calling all apis at once and waiting all of them to resolve
-    const fetchData = () => {
-      Promise.all([
-        fetchCurrentWeather(city),
-        fetchForecast(city),
-        fetchAstronomy(city),
-        fetchHistory(city, yesterdayDate),
-      ])
-        //Destructure result array
-        .then(([currentData, forecastData, astronomyData, historyData]) => {
-          //Update weatherData with object containing api data
-          setWeatherData({
-            current: currentData.current,
-            forecast: forecastData.forecast,
-            astronomy: astronomyData.astronomy.astro,
-            history: historyData.forecast.forecastday,
-            cityName: currentData.location.name,
-          });
-        })
-        .catch(console.error);
-    };
-
-    fetchData();
-
-    //Refetch API data every 3 minutes
-    const intervalID = setInterval(fetchData, 180000);
-
-    return () => clearInterval(intervalID);
-  }, [city, yesterdayDate]);
-
   //Display loading while data is loading
-  if (!weatherData) {
+  if (!weatherData || loading) {
     return (
       <>
         <Background blured={true} />
@@ -122,6 +75,7 @@ function App() {
       {/* Fixed background */}
       <Background />
 
+      {/* Showing popup when citytag is clicked */}
       {showPopup && (
         <CityPopup
           onClose={() => setShowPopup(false)}

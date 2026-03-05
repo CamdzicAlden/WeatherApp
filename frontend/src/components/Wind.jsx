@@ -6,11 +6,14 @@ function Wind({ speed, direction }) {
   const [windSpeed, setWindSpeed] = useState(0);
   const [windDirection, setWindDirection] = useState(null);
 
+  //Change wind speed every time speed changes
   useEffect(() => {
     setWindSpeed(speed);
   }, [speed]);
 
+  //Change wind direction every time direction changes
   useEffect(() => {
+    //If direction has 3 letters, take only last two
     const formattedDirection =
       direction.length === 3 ? direction.slice(1) : direction;
     setWindDirection(formattedDirection);
@@ -19,7 +22,7 @@ function Wind({ speed, direction }) {
   return (
     //Custom card component
     <Card>
-      <div className="flex flex-col justify-evenly items-center gap-2 w-[100%] h-[100%] pt-[7%]">
+      <div className="flex flex-col justify-evenly items-center w-[100%] h-[100%] pt-[7%]">
         {/* Heading flex container */}
         <div className="flex justify-center items-center gap-1.5 w-[100%] h-auto ">
           {/* Wind icon*/}
@@ -39,7 +42,7 @@ function Wind({ speed, direction }) {
         </div>
 
         {/* Circle container */}
-        <div className="relative h-[70%] w-auto mx-auto">
+        <div className="relative h-[70%] w-auto">
           {/* Circle */}
           <svg viewBox="0 0 100 100" className="w-full h-full rotate-[-90deg]">
             <circle

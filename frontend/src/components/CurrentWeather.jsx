@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import CityTag from "./CityTag.jsx";
 import getImageAndText from "../helpers/weatherCodeConverter.js";
 
@@ -49,7 +50,7 @@ function CurrentWeather({
               : currentWeather.imageNight
         }
         alt="I"
-        className={"w-[clamp(0.1rem,20dvw,20rem)] h-auto mb-[-6%]"}
+        className="w-[clamp(0.1rem,20dvw,20rem)] h-auto mb-[-6%]"
         style={{
           marginTop: `${
             isDay
@@ -71,7 +72,7 @@ function CurrentWeather({
 
       {/* Paragraphs with weather text */}
       <p
-        className="text-[clamp(0.1rem,4dvh,10rem)]"
+        className="text-[clamp(0.1rem,4dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.3dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
         style={{ fontFamily: "MontserratMedium" }}
       >
         {currentWeather.text}
@@ -81,7 +82,7 @@ function CurrentWeather({
       <div className="flex flex-col justify-center items-center">
         {/* Paragraph with currentTemp*/}
         <p
-          className="text-[clamp(0.1rem,8dvh,10rem)]"
+          className="text-[clamp(0.1rem,8dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.3dvh,5rem)_rgba(0,0,0,0.25)]"
           style={{ fontFamily: "MontserratBold" }}
         >
           {currentTemp}°C
@@ -89,7 +90,7 @@ function CurrentWeather({
 
         {/* Paragraph for min and max temp */}
         <p
-          className="text-[clamp(0.1rem,3dvh,10rem)]"
+          className="text-[clamp(0.1rem,3dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.3dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
           {maxTemp}°&nbsp;&nbsp;{minTemp}°

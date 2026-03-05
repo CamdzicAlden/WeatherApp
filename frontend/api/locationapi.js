@@ -1,4 +1,4 @@
-//Method for getting user coordinates based on golocation or IP address
+//Method for getting user coordinates based on geolocation or IP address
 export async function resolveUserLocation() {
   try {
     // Try GPS first
@@ -21,7 +21,7 @@ export async function resolveUserLocation() {
         lat: data.latitude,
         lon: data.longitude,
       };
-    } catch {
+    } catch (err) {
       console.error(err.message);
     }
   }

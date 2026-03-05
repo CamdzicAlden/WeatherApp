@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from "react";
 function TodaysForecast({ todaysForecast, isFullMoon }) {
   //Getting current time epoch in ms
   const now = Date.now();
-  //Extracting 24 hours after current hour
+  //Extracting next 24 hours
   const upcomingHours = todaysForecast
     .filter((el) => el.time_epoch * 1000 > now)
     .slice(0, 24);
@@ -68,7 +68,7 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
     <div className="flex flex-col justify-evenly items-center w-[50dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[1%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
       {/* Today's forecast paragraph */}
       <p
-        className="text-[clamp(0.1rem,2dvh,10rem)] w-full text-left pl-[6%]"
+        className="text-[clamp(0.1rem,2dvh,10rem)] w-full text-left pl-[6%] [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
         style={{ fontFamily: "MontserratBold" }}
       >
         TODAY'S FORECAST
@@ -115,7 +115,7 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
                   hours={formattedTime}
                   conditionCode={element.condition.code}
                   temp={Math.round(element.temp_c)}
-                  humidity={Math.round(element.humidity / 10)}
+                  rainChance={element.chance_of_rain}
                   isDay={element.is_day}
                   isFullMoon={isFullMoon}
                 />

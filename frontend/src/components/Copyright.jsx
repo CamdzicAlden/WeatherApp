@@ -2,7 +2,7 @@
 function Copyright() {
   return (
     //Main flex container
-    <div className="flex justify-center items-center gap-0.5">
+    <div className="flex justify-center items-center gap-0.5 [text-shadow:0_clamp(0.05rem,0.1dvh,5rem)_clamp(0.05rem,0.2dvh,5rem)_rgba(0,0,0,0.25)]">
       {/* Copy symbol */}
       <img
         src="/icons/copyright.svg"

@@ -9,6 +9,7 @@ const moonImages = {
   "Waning Crescent": "/images/WaningCrescent.svg",
 };
 
+//Function for returning image for given moonPhase
 export default function moonImage(moonPhase) {
   return moonImages[moonPhase];
 }
