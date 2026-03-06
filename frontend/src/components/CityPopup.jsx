@@ -16,7 +16,10 @@ function CityPopup({ onClose, onOK }) {
 
   //Method for handling search
   const handleSearch = async () => {
-    if (!searchText) return;
+    if (!searchText) {
+      setResults([]);
+      return;
+    }
     setLoading(true);
 
     try {
