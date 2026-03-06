@@ -1,7 +1,3 @@
-//Api key and base url variable for api
-const API_KEY = "246343818a474811b96213159262202";
-const BASE_URL = "https://api.weatherapi.com/v1";
-
 //Method for fetching current weather api
 export async function fetchCurrentWeather(location) {
   try {
@@ -9,11 +5,11 @@ export async function fetchCurrentWeather(location) {
     const { lat, lon } = location;
     //Async fetching
     const res = await fetch(
-      `https://cors-anywhere.herokuapp.com/${BASE_URL}/current.json?key=${API_KEY}&q=${lat},${lon}&aqi=yes`,
+      `http://localhost:5000/currentWeather?lat=${lat}&lon=${lon}`,
     );
 
     //If status is not ok
-    if (!res.ok) throw new Error(`API error ${res.status}`);
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
 
     //Return json of the result
     return await res.json();
@@ -29,11 +25,11 @@ export async function fetchForecast(location, days = 6) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `${BASE_URL}/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=${days}`,
+      `http://localhost:5000/forecastWeather?lat=${lat}&lon=${lon}&days=${days}`,
     );
 
     //If status is not ok
-    if (!res.ok) throw new Error(`API error ${res.status}`);
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
 
     //Return json of the result
     return await res.json();
@@ -49,11 +45,11 @@ export async function fetchAstronomy(location) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `${BASE_URL}/astronomy.json?key=${API_KEY}&q=${lat},${lon}`,
+      `http://localhost:5000/astronomy?lat=${lat}&lon=${lon}`,
     );
 
     //If status is not ok
-    if (!res.ok) throw new Error(`API error ${res.status}`);
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
 
     //Return json of the result
     return await res.json();
@@ -69,11 +65,11 @@ export async function fetchHistory(location, dt) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `https://cors-anywhere.herokuapp.com/${BASE_URL}/history.json?key=${API_KEY}&q=${lat},${lon}&dt=${dt}`,
+      `http://localhost:5000/historyWeather?lat=${lat}&lon=${lon}&dt=${dt}`,
     );
 
     //If status is not ok
-    if (!res.ok) throw new Error(`API error ${res.status}`);
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
 
     //Return json of the result
     return await res.json();
@@ -86,13 +82,10 @@ export async function fetchHistory(location, dt) {
 export async function fetchSearch(city) {
   try {
     //Async fetch
-    const res = await fetch(
-      `https://cors-anywhere.herokuapp.com/${BASE_URL}/search.json?key=${API_KEY}&q=${city}`,
-    );
+    const res = await fetch(`http://localhost:5000/searchCity?city=${city}`);
 
     //If status is not ok
-    if (!res.ok) throw new Error(`API error ${res.status}`);
-
+    if (!res.ok) throw new Error(`Server error ${res.status}`);
     //Return json of the result
     return await res.json();
   } catch (err) {

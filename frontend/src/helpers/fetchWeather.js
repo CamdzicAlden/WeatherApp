@@ -7,6 +7,7 @@ import {
   fetchForecast,
   fetchHistory,
 } from "../../api/weatherapi.js";
+
 import getYesterdayDate from "./getYesterdayDate.js";
 
 //Helper function for getting weatherData and loading state
