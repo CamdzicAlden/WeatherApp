@@ -13,10 +13,10 @@ function AQI({ index }) {
     //Custom card
     <Card>
       {/* Main flex container */}
-      <div className="flex flex-col justify-evenly items-start gap-10 w-[100%] h-[100%] px-[clamp(0.1rem,2dvw,10rem)]">
+      <div className="flex flex-col justify-evenly items-start gap-10 w-[100%] h-[100%]">
         {/* AQI text */}
         <p
-          className="text-[clamp(0.1rem,2.5dvh,10rem)] w-[100%] text-center"
+          className="text-[clamp(0.1rem,2.5vh,10rem)] w-[100%] text-center"
           style={{ fontFamily: "MontserratMedium" }}
         >
           AQI
@@ -26,7 +26,7 @@ function AQI({ index }) {
         <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-auto">
           {/* Text info */}
           <p
-            className="text-[clamp(0.1rem,2.3dvh,10rem)]"
+            className="text-[clamp(0.1rem,2.3vh,10rem)]"
             style={{ fontFamily: "RobotoBold" }}
           >
             {getAQI(index)}({index})
@@ -34,7 +34,7 @@ function AQI({ index }) {
 
           {/* Progress bar */}
           <div
-            className="w-[100%] h-[2.7dvh] bg-[#A5A5A5] rounded-full"
+            className="w-[100%] h-[2.7vh] bg-[#A5A5A5] rounded-full"
             ref={ref}
           >
             <div

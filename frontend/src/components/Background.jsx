@@ -6,7 +6,7 @@ function Background({ blured = false }) {
   return (
     //Background container
     <div
-      className={`fixed inset-0 z-[-5] h-full w-full bg-[#0D47A1] ${blured ? "opacity-85" : "opacity-100"}`}
+      className={`fixed inset-0 z-[-5] min-h-screen min-h-[100dvh] w-full bg-[#0D47A1] ${blured ? "opacity-85" : "opacity-100"}`}
     >
       {/*Background elements*/}
       <BackgroundCircle top={0} left={0} />

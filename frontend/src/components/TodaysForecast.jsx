@@ -65,22 +65,22 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
 
   return (
     //Main flex container
-    <div className="flex flex-col justify-evenly items-center w-[50dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[1%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)]">
+    <div className="flex flex-col justify-evenly items-center w-[95dvw] h-[32vh] lg:w-[50dvw] lg:h-[35vh] rounded-[clamp(2rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[3%] lg:px-[1%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5vh,2rem)_clamp(0.1rem,1vh,10rem)_rgba(0,0,0,0.25)]">
       {/* Today's forecast paragraph */}
       <p
-        className="text-[clamp(0.1rem,2dvh,10rem)] w-full text-left pl-[6%] [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
+        className="text-[clamp(0.9rem,1vw,5rem)] w-full text-left pl-0 lg:pl-[6%] [text-shadow:0_clamp(0.1rem,0.2vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
         style={{ fontFamily: "MontserratBold" }}
       >
         TODAY'S FORECAST
       </p>
 
       {/* Container for hour forecast and arrows */}
-      <div className="flex justify-center items-center w-full gap-[1%]">
+      <div className="flex justify-center items-center w-full gap-[2%] lg:gap-[1%]">
         {/* Left arrow icon */}
         <img
           src="/icons/ArrowLeft.svg"
           alt="I"
-          className={`w-[5%] h-auto ${canScrollLeft ? "cursor-pointer opacity-100" : "opacity-30 pointer-events-none"}`}
+          className={`hidden lg:block w-[5%] h-auto ${canScrollLeft ? "cursor-pointer opacity-100" : "opacity-30 pointer-events-none"}`}
           onClick={scrollLeft}
         />
 
@@ -88,7 +88,7 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
         <div
           ref={scrollRef}
           onScroll={checkScroll}
-          className="todaysForecastScroll flex justify-start items-center gap-[clamp(0.1rem,1.2dvw,4rem)] w-full h-auto overflow-x-scroll"
+          className="todaysForecastScroll flex justify-start items-center gap-[clamp(0.8rem,1.2dvw,4rem)] w-full h-auto overflow-x-scroll"
         >
           {/* Mapping through 24 hours forecast data */}
           {upcomingHours.map((element, index) => {
@@ -108,7 +108,7 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
               //Container for one hour forecast and line
               <div
                 key={index}
-                className="flex justify-center items-center h-auto gap-[clamp(0.1rem,1.5dvw,4rem)]"
+                className="flex justify-center items-center h-auto gap-[clamp(1rem,1.5dvw,4rem)]"
               >
                 {/* Custom hourForecast component */}
                 <HourForecast
@@ -130,7 +130,7 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
         <img
           src="/icons/ArrowRight.svg"
           alt="I"
-          className={`w-[5%] h-auto ${canScrollRight ? "cursor-pointer opacity-100" : "opacity-30 pointer-events-none"}`}
+          className={`hidden lg:block w-[5%] h-auto ${canScrollRight ? "cursor-pointer opacity-100" : "opacity-30 pointer-events-none"}`}
           onClick={scrollRight}
         />
       </div>

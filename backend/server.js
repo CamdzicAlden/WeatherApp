@@ -115,6 +115,12 @@ const server = http.createServer(async (req, res) => {
     }
 
     fetchAndSend(res, "search.json", { q: `${city}` });
+  } else if (pathname === "/locationFromIP") {
+    const result = await fetch("https://ipapi.co/json/");
+    const data = await result.json();
+    //Write header and return json as a string
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(data));
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ error: "Endpoint not found" }));

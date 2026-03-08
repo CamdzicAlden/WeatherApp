@@ -5,6 +5,7 @@ import {
   fetchAstronomy,
   fetchCurrentWeather,
   fetchForecast,
+  fetchForecastOpenMeteo,
   fetchHistory,
 } from "../../api/weatherapi.js";
 
@@ -29,21 +30,31 @@ export default function fetchWeather(city) {
       Promise.all([
         fetchCurrentWeather(city),
         fetchForecast(city),
+        fetchForecastOpenMeteo(city),
         fetchAstronomy(city),
         fetchHistory(city, yesterdayDate),
       ])
         //Destructure result array
-        .then(([currentData, forecastData, astronomyData, historyData]) => {
-          //Update weatherData with object containing api data
-          setWeatherData({
-            current: currentData.current,
-            forecast: forecastData.forecast,
-            astronomy: astronomyData.astronomy.astro,
-            history: historyData.forecast.forecastday,
-            cityName: currentData.location.name,
-          });
-          setLoading(false);
-        })
+        .then(
+          ([
+            currentData,
+            forecastData,
+            forecastDataOpenMeteo,
+            astronomyData,
+            historyData,
+          ]) => {
+            //Update weatherData with object containing api data
+            setWeatherData({
+              current: currentData.current,
+              forecast: forecastData.forecast,
+              forecastOpenMeteo: forecastDataOpenMeteo.daily,
+              astronomy: astronomyData.astronomy.astro,
+              history: historyData.forecast.forecastday,
+              cityName: currentData.location.name,
+            });
+            setLoading(false);
+          },
+        )
         .catch((err) => {
           console.error(err);
           setLoading(false);

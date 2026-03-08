@@ -35,54 +35,39 @@ function CurrentWeather({
 
   return (
     //Main flex container
-    <div className="flex flex-col justify-evenly items-center gap-3 text-[#fafafa] mt-[2%]">
+    <div className="flex flex-col justify-evenly items-center gap-5 text-[#fafafa] mt-[2%]">
       {/* Location tag */}
       <CityTag city={city} onClick={onCityClicked} />
 
-      {/* Current weather image */}
-      <img
-        //Conditionally set src attribute
-        src={
-          isDay
-            ? currentWeather.imageDay
-            : isFullMoon
-              ? currentWeather.imageNightFullMoon
-              : currentWeather.imageNight
-        }
-        alt="I"
-        className="w-[clamp(0.1rem,20dvw,20rem)] h-auto mb-[-6%]"
-        style={{
-          marginTop: `${
+      <div className="flex flex-col justify-center items-center">
+        {/* Current weather image */}
+        <img
+          //Conditionally set src attribute
+          src={
             isDay
-              ? currentWeather.marginTopDay
+              ? currentWeather.imageDay
               : isFullMoon
-                ? currentWeather.marginTopNightFullMoon
-                : currentWeather.marginTopNight
-          }%`,
-          marginLeft: `${
-            isDay
-              ? currentWeather.marginLeftDay
-              : isFullMoon
-                ? currentWeather.marginLeftNightFullMoon
-                : currentWeather.marginLeftNight
-          }%`,
-          marginBottom: `${currentWeather.marginBottom}%`,
-        }}
-      />
+                ? currentWeather.imageNightFullMoon
+                : currentWeather.imageNight
+          }
+          alt="I"
+          className="w-[clamp(11rem,14vw,50rem)] h-auto"
+        />
 
-      {/* Paragraphs with weather text */}
-      <p
-        className="text-[clamp(0.1rem,4dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.3dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
-        style={{ fontFamily: "MontserratMedium" }}
-      >
-        {currentWeather.text}
-      </p>
+        {/* Paragraphs with weather text */}
+        <p
+          className="text-[clamp(0.1rem,4vh,10rem)] [text-shadow:0_clamp(0.1rem,0.3vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
+          style={{ fontFamily: "MontserratMedium" }}
+        >
+          {currentWeather.text}
+        </p>
+      </div>
 
       {/* Container for currentTemp and minMax temp */}
       <div className="flex flex-col justify-center items-center">
         {/* Paragraph with currentTemp*/}
         <p
-          className="text-[clamp(0.1rem,8dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.3dvh,5rem)_rgba(0,0,0,0.25)]"
+          className="text-[clamp(3rem,8vh,10rem)] [text-shadow:0_clamp(0.1rem,0.2vh,5rem)_clamp(0.1rem,0.3vh,5rem)_rgba(0,0,0,0.25)]"
           style={{ fontFamily: "MontserratBold" }}
         >
           {currentTemp}°C
@@ -90,7 +75,7 @@ function CurrentWeather({
 
         {/* Paragraph for min and max temp */}
         <p
-          className="text-[clamp(0.1rem,3dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.3dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
+          className="text-[clamp(0.1rem,3vh,10rem)] [text-shadow:0_clamp(0.1rem,0.3vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
           {maxTemp}°&nbsp;&nbsp;{minTemp}°

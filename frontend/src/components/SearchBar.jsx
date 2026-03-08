@@ -2,12 +2,12 @@
 function SearchBar({ onTextChange }) {
   return (
     //Main flex container
-    <div className="w-[80%] h-auto rounded-full flex justify-start items-center gap-1 bg-transparent border-2 border-[#fafafa] p-[2%]">
+    <div className="w-[80%] h-auto rounded-full flex justify-start items-center gap-1 bg-transparent border-2 border-[#fafafa] p-[2%] text-[clamp(0.1rem,2.3vh,5rem)]">
       {/* Search icon */}
       <img
         src="/icons/search.svg"
         alt="S"
-        className="h-[clamp(0.1rem,4dvh,10rem)] w-auto"
+        className="h-[clamp(0.1rem,4vh,10rem)] w-auto"
       />
       {/* Input field */}
       <input

@@ -29,57 +29,53 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
 
   return (
     //Main flex container
-    <div className="flex justify-between items-center w-[100%] h-auto [text-shadow:0_clamp(0.05rem,0.2dvh,5rem)_clamp(0.05rem,0.3dvh,5rem)_rgba(0,0,0,0.25)] mb-[-2%]">
+    <div className="flex justify-between items-center w-full h-auto [text-shadow:0_clamp(0.05rem,0.2vh,5rem)_clamp(0.05rem,0.3vh,5rem)_rgba(0,0,0,0.25)] my-[1.5%]">
       {/* Weekday text */}
       <p
-        className="text-[clamp(0.1rem,2.2dvh,10rem)]"
+        className="text-[clamp(0.9rem,1vw,5rem)]"
         style={{ fontFamily: "MontserratMedium" }}
       >
         {weekDays[dayNum]}
       </p>
 
       {/* Whole right side container */}
-      <div className="flex justify-between items-center w-[60%]">
+      <div className="flex justify-between items-center w-[65%] lg:w-[50%]">
         {/* Humidity and images container */}
-        <div className="flex justify-between items-center w-[60%]">
+        <div className="flex justify-between items-center w-[65%] lg:w-[60%] gap-3">
           {/* Humidity container */}
           <div className="flex justify-center items-center gap-0.5">
             {/* Water drop image */}
             <img
               src="/icons/water-drop.svg"
               alt="I"
-              className="h-[clamp(0.1rem,1.7dvh,10rem)]"
+              className="h-[clamp(0.1rem,1.7vh,10rem)]"
             />
 
             <p
-              className="text-[clamp(0.1rem,1.7dvh,10rem)]"
+              className="text-[clamp(0.9rem,1vw,5rem)]"
               style={{ fontFamily: "Roboto" }}
             >
               {rainChance}%
             </p>
           </div>
 
-          <div className="flex justify-center items-center">
-            <div className="flex items-center justify-center h-[8dvh] w-[8dvh] ">
-              <img
-                src={imageText.imageDay}
-                alt="Day Icon"
-                className="h-full w-full object-contain object-center"
-              />
-            </div>
+          <div className="flex justify-center items-center gap-2">
+            <img
+              src={imageText.imageDay}
+              alt="Day Icon"
+              className="w-[clamp(2rem,2.5vw,10rem)] h-auto"
+            />
 
-            <div className="flex items-center justify-center h-[8dvh] w-[8dvh]">
-              <img
-                src={imageText.imageNight}
-                alt="Night Icon"
-                className="h-full w-full object-contain object-center"
-              />
-            </div>
+            <img
+              src={imageText.imageNight}
+              alt="Night Icon"
+              className="w-[clamp(2rem,2.5vw,10rem)] h-auto"
+            />
           </div>
         </div>
 
         <p
-          className="text-[clamp(0.1rem,2dvh,10rem)] w-[20%]"
+          className="whitespace-nowrap text-[clamp(0.9rem,1vw,5rem)] w-[20%]"
           style={{ fontFamily: "Montserrat" }}
         >
           {maxTemp}° {minTemp}°

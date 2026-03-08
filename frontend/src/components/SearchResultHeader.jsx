@@ -7,7 +7,7 @@ function SearchResultHeader() {
     <div className="w-full h-auto flex flex-col justify-center items-center gap-2 text-[#fafafa]">
       {/* Container for text */}
       <div
-        className="w-full h-auto flex justify-center items-center gap-[10%] text-[clamp(0.1rem,3dvh,10rem)] [text-shadow:0_clamp(0.1rem,0.2dvh,5rem)_clamp(0.1rem,0.5dvh,5rem)_rgba(0,0,0,0.25)]"
+        className="w-full h-auto flex justify-center items-center gap-[10%] text-[clamp(0.1rem,2.8vh,10rem)] [text-shadow:0_clamp(0.1rem,0.2vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
         style={{ fontFamily: "MontserratMedium" }}
       >
         <div className="w-[45%] flex justify-center items-center">City</div>

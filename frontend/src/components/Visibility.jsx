@@ -11,12 +11,12 @@ function Visibility({ range }) {
         <img
           src="/icons/eye.svg"
           alt="I"
-          className="h-[clamp(0.1rem,3dvh,10rem)] w-auto"
+          className="h-[clamp(0.1rem,3vh,10rem)] w-auto"
         />
 
         {/* Visibility text */}
         <p
-          className="text-[clamp(0.1rem,2.2dvh,10rem)]"
+          className="text-[clamp(0.1rem,2.2vh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
           Visibility
@@ -24,10 +24,10 @@ function Visibility({ range }) {
       </div>
 
       {/* Visibility value container */}
-      <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%] px-[clamp(0.1rem,2dvw,10rem)]">
+      <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%]">
         {/* Visibility value */}
         <p
-          className="text-[clamp(0.1rem,3dvh,10rem)]"
+          className="text-[clamp(0.1rem,3vh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
           {range}km

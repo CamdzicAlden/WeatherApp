@@ -27,11 +27,11 @@ function UVIndex({ uvIndex }) {
         <img
           src="/icons/sun.svg"
           alt="I"
-          className="h-[clamp(0.1rem,3dvh,10rem)] w-auto"
+          className="h-[clamp(0.1rem,3vh,10rem)] w-auto"
         />
         {/* UV Index text */}
         <p
-          className="text-[clamp(0.1rem,2.2dvh,10rem)]"
+          className="text-[clamp(0.1rem,2.2vh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
           UV Index
@@ -39,10 +39,10 @@ function UVIndex({ uvIndex }) {
       </div>
 
       {/* Data flex container */}
-      <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%] px-[clamp(0.1rem,2dvw,10rem)]">
+      <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%]">
         {/* Text info */}
         <p
-          className="text-[clamp(0.1rem,2.5dvh,10rem)]"
+          className="text-[clamp(0.1rem,2.5vh,10rem)]"
           style={{ fontFamily: "RobotoBold" }}
         >
           {message}
@@ -55,7 +55,7 @@ function UVIndex({ uvIndex }) {
         >
           {/* Inner moving circle */}
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-[2.5dvh] h-[2.5dvh] rounded-full border-[0.3dvh] border-[#fafafa] left transition-all duration-1000 ease-out will-change-left"
+            className="absolute top-1/2 -translate-y-1/2 w-[2.5vh] h-[2.5vh] rounded-full border-[0.3vh] border-[#fafafa] left transition-all duration-1000 ease-out will-change-left"
             style={{
               left: visible ? `${position}%` : "0%",
               transform: "translate(-50%)",

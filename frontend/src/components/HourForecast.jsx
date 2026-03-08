@@ -24,17 +24,17 @@ function HourForecast({
 
   return (
     //Main flex container
-    <div className="flex flex-col gap-2.5 justify-center items-center [text-shadow:0_clamp(0.05rem,0.1dvh,5rem)_clamp(0.05rem,0.3dvh,5rem)_rgba(0,0,0,0.25)]">
+    <div className="flex flex-col gap-2.5 justify-center items-center [text-shadow:0_clamp(0.05rem,0.1vh,5rem)_clamp(0.05rem,0.3vh,5rem)_rgba(0,0,0,0.25)]">
       {/* Paragraph for hours */}
       <p
-        className="text-[clamp(0.1rem,2dvh,10rem)] whitespace-nowrap"
+        className="text-[clamp(0.9rem,1vw,5rem)] whitespace-nowrap"
         style={{ fontFamily: "Roboto" }}
       >
         {hours}
       </p>
 
       {/* Image showing weather */}
-      <div className="w-[clamp(0.1rem,5.5dvw,15rem)] h-auto flex justify-center items-center shrink-0">
+      <div className="w-auto h-[clamp(0.1rem,5.5vh,10rem)] flex justify-center items-center">
         {/* If there is no image, display loading */}
         {!image ? (
           <Loading />
@@ -48,14 +48,14 @@ function HourForecast({
                   : image.imageNight
             }
             alt="I"
-            className="w-full h-auto mt-[-15%] mb-[-20%]"
+            className="w-full h-full"
           />
         )}
       </div>
 
       {/* Paragraph for temperature */}
       <p
-        className="text-[clamp(0.1rem,2.6dvh,10rem)]"
+        className="text-[clamp(1.1rem,1.3vw,5rem)]"
         style={{ fontFamily: "RobotoBold" }}
       >
         {temp}°C
@@ -67,12 +67,12 @@ function HourForecast({
         <img
           src="/icons/water-drop.svg"
           alt="w"
-          className="h-[clamp(0.1rem,1.8dvh,10rem)] w-auto"
+          className="h-[clamp(0.1rem,1.8vh,10rem)] w-auto"
         />
 
         {/* Paragraph for humidity percent */}
         <p
-          className="text-[clamp(0.1rem,1.8dvh,10rem)]"
+          className="text-[clamp(0.8rem,0.9vw,5rem)]"
           style={{ fontFamily: "Roboto" }}
         >
           {rainChance}%

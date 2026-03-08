@@ -12,7 +12,7 @@ function Copyright() {
 
       {/* Copyright text */}
       <p
-        className="text-[#fafafa] text-[clamp(0.1rem,1.6dvh,10rem)]"
+        className="text-[#fafafa] text-[clamp(0.6rem,1.6dvh,4rem)]"
         style={{ fontFamily: "Roboto" }}
       >
         2026 Alden Camdzic

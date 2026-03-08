@@ -17,11 +17,11 @@ function Humidity({ percent }) {
         <img
           src="/icons/water-drop.svg"
           alt="I"
-          className="h-[clamp(0.1rem,3dvh,10rem)] w-auto"
+          className="h-[clamp(0.1rem,3vh,10rem)] w-auto"
         />
         {/* Humidity text */}
         <p
-          className="text-[clamp(0.1rem,2.2dvh,10rem)]"
+          className="text-[clamp(0.1rem,2.2vh,10rem)]"
           style={{ fontFamily: "MontserratMedium" }}
         >
           Humidity
@@ -29,10 +29,10 @@ function Humidity({ percent }) {
       </div>
 
       {/* Data flex container */}
-      <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%] px-[clamp(0.1rem,2dvw,10rem)]">
+      <div className="flex flex-col justify-center items-start gap-2 w-[100%] h-[50%]">
         {/* Percent text */}
         <p
-          className="text-[clamp(0.1rem,2.5dvh,10rem)]"
+          className="text-[clamp(0.1rem,2.5vh,10rem)]"
           style={{ fontFamily: "RobotoBold" }}
         >
           {percent}%

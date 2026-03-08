@@ -105,35 +105,46 @@ function App() {
         }
       />
 
-      <div className="flex justify-center items-center w-[100%] h-[107dvh] my-[3%] gap-7">
-        <div className="flex flex-col justify-center items-center gap-[2dvh]">
+      <div className="flex flex-col lg:flex-row justify-center items-center w-full my-[3%] gap-7">
+        <div className="flex flex-col justify-center items-center gap-[2dvh] w-full lg:w-auto">
           <SevenDayForecast
-            weekForecast={weatherData.forecast.forecastday}
+            weekForecast={weatherData.forecastOpenMeteo}
             yesterday={weatherData.history[0].day}
           />
-          <SunriseSunset
-            sunrise={weatherData.astronomy.sunrise}
-            sunset={weatherData.astronomy.sunset}
-          />
+          <div className="hidden lg:flex flex-col justify-center items-center">
+            <SunriseSunset
+              sunrise={weatherData.astronomy.sunrise}
+              sunset={weatherData.astronomy.sunset}
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center gap-[2dvh]">
-          <UVIndex uvIndex={weatherData.current.uv} />
-          <Humidity percent={weatherData.current.humidity} />
-          <AQI index={weatherData.current.air_quality["gb-defra-index"]} />
-        </div>
+        <div className="flex justify-center items-center lg:gap-7 gap-[2dvw]">
+          <div className="flex flex-col justify-center items-center lg:gap-[2dvh] gap-[2dvw]">
+            <UVIndex uvIndex={weatherData.current.uv} />
+            <Humidity percent={weatherData.current.humidity} />
+            <AQI index={weatherData.current.air_quality["gb-defra-index"]} />
+          </div>
 
-        <div className="flex flex-col justify-center items-center gap-[2dvh]">
-          <Visibility range={weatherData.current.vis_km} />
-          <Wind
-            speed={weatherData.current.wind_kph}
-            direction={weatherData.current.wind_dir}
-          />
-          <MoonPhase moonPhase={weatherData.astronomy.moon_phase} />
+          <div className="flex flex-col justify-center items-center lg:gap-[2dvh] gap-[2dvw]">
+            <Visibility range={weatherData.current.vis_km} />
+            <Wind
+              speed={weatherData.current.wind_kph}
+              direction={weatherData.current.wind_dir}
+            />
+            <MoonPhase moonPhase={weatherData.astronomy.moon_phase} />
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center gap-2 mb-[1%] mt-[10%]">
+      <div className="lg:hidden flex flex-col justify-center items-center">
+        <SunriseSunset
+          sunrise={weatherData.astronomy.sunrise}
+          sunset={weatherData.astronomy.sunset}
+        />
+      </div>
+
+      <div className="flex flex-col justify-center items-center gap-2 mb-[1%] lg:mt-[10%] mt-[20%]">
         <SocialMedia />
         <Copyright />
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useId } from "react";
 
 //Component for displaying sunrise and sunset with animation
 function SunriseSunset({ sunrise, sunset }) {
@@ -8,6 +8,9 @@ function SunriseSunset({ sunrise, sunset }) {
   const [sunPos, setSunPos] = useState({ x: 0, y: 0 });
   const [sunrisePos, setSunrisePos] = useState(null);
   const [sunsetPos, setSunsetPos] = useState(null);
+
+  const dayNightGradient = useId();
+  const sunGradient = useId();
 
   //Function for getting day percent in 0.0 to 1.0 form
   function getTimePosition(time) {
@@ -66,15 +69,15 @@ function SunriseSunset({ sunrise, sunset }) {
 
   return (
     //Main container
-    <div className="w-[38dvw] h-[35dvh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] pb-[3%] shadow-[0_clamp(0.1rem,0.5dvh,2rem)_clamp(0.1rem,1dvh,10rem)_rgba(0,0,0,0.25)] [text-shadow:0_clamp(0.05rem,0.2dvh,5rem)_clamp(0.05rem,0.3dvh,5rem)_rgba(0,0,0,0.25)]">
+    <div className="w-[95dvw] h-[40vh] lg:w-[38dvw] lg:h-[35vh] rounded-[clamp(0.1rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] text-[clamp(1rem,2.2vh,5rem)] pb-[3%] shadow-[0_clamp(0.1rem,0.5vh,2rem)_clamp(0.1rem,1vh,10rem)_rgba(0,0,0,0.25)] [text-shadow:0_clamp(0.05rem,0.2vh,5rem)_clamp(0.05rem,0.3vh,5rem)_rgba(0,0,0,0.25)]">
       {/* Container for svg and text */}
       <div className="w-full h-full flex flex-col justify-center items-center gap-7">
         {sunrisePos !== null && sunsetPos !== null && (
           // Svg container
-          <svg viewBox="0 0 100 50" className="w-full h-auto">
+          <svg viewBox="0 0 100 50" className="w-full h-auto min-h-[120px]">
             <defs>
               <linearGradient
-                id="dayNightGradient"
+                id={dayNightGradient}
                 x1="0%"
                 y1="0%"
                 x2="100%"
@@ -88,7 +91,7 @@ function SunriseSunset({ sunrise, sunset }) {
               </linearGradient>
 
               <linearGradient
-                id="sunGradient"
+                id={sunGradient}
                 x1="50%"
                 y1="0%"
                 x2="50%"
@@ -100,8 +103,8 @@ function SunriseSunset({ sunrise, sunset }) {
             </defs>
 
             <path
-              d="M 0 50 Q 50 0 100 50"
-              stroke="url(#dayNightGradient)"
+              d="M 2 46 Q 50 0 98 46"
+              stroke={`url(#${dayNightGradient})`}
               strokeWidth="0.7"
               strokeLinecap="round"
               fill="none"
@@ -111,14 +114,14 @@ function SunriseSunset({ sunrise, sunset }) {
               cx={sunPos.x}
               cy={sunPos.y}
               r="3"
-              fill="url(#sunGradient)"
+              fill={`url(#${sunGradient})`}
             />
           </svg>
         )}
 
         {/* Container for sunrise/sunset text */}
         <div
-          className="w-full h-[40%] flex justify-between items-center px-[3dvw]"
+          className="w-full h-[40%] flex justify-between items-center px-[5%] lg:px-[7%]"
           style={{ fontFamily: "Roboto" }}
         >
           <div className="w-auto h-auto flex flex-col justify-center items-center gap-0.5">

@@ -19,19 +19,19 @@ function MoonPhase({ moonPhase }) {
         <Loading />
       ) : (
         // Main flex container
-        <div className="flex flex-col justify-center items-center gap-7 w-[100%] h-[100%] px-[clamp(0.1rem,2dvw,10rem)]">
+        <div className="flex flex-col justify-center items-center gap-7 w-[100%] h-[100%] whitespace-nowrap">
           {/* Heading container */}
           <div className="flex justify-center items-center gap-1.5 w-[100%] h-auto ">
             {/* Moon phase icon */}
             <img
               src="/icons/moon.svg"
               alt="I"
-              className="h-[clamp(0.1rem,2.6dvh,10rem)] w-auto"
+              className="h-[clamp(0.1rem,2.6vh,10rem)] w-auto"
             />
 
             {/* Moon phase text */}
             <p
-              className="text-[clamp(0.1rem,2.2dvh,10rem)]"
+              className="text-[clamp(0.1rem,2.2vh,10rem)]"
               style={{ fontFamily: "MontserratMedium" }}
             >
               Moon phase
@@ -42,12 +42,12 @@ function MoonPhase({ moonPhase }) {
           <img
             src={moonImg}
             alt="I"
-            className="h-[clamp(0.1rem,12dvh,10rem)] w-auto"
+            className="h-[clamp(0.1rem,12vh,10rem)] w-auto"
           />
 
           {/* Moon phase name */}
           <p
-            className="text-[clamp(0.1rem,2dvh,10rem)]"
+            className="text-[clamp(0.1rem,2vh,10rem)]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             {moonPhase}
