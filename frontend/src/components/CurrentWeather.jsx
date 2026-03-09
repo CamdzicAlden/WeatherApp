@@ -32,7 +32,7 @@ function CurrentWeather({
 
   return (
     //Main flex container
-    <div className="flex flex-col justify-evenly items-center gap-5 text-[#fafafa] mt-[2%]">
+    <div className="flex flex-col justify-evenly items-center gap-5 text-[#fafafa] mt-[5%] lg:mt-[2%]">
       {/* Location tag */}
       <CityTag city={city} onClick={onCityClicked} />
 
