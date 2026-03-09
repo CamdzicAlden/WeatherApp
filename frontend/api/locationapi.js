@@ -12,17 +12,9 @@ export async function resolveUserLocation() {
     };
   } catch {
     // If user declines GPS
-    try {
-      //Use ipwho.is api for getting coords from IP
-      const res = await fetch("http://ip-api.com/json/");
-      const data = await res.json();
-
-      return {
-        lat: data.latitude,
-        lon: data.longitude,
-      };
-    } catch (err) {
-      console.error(err.message);
-    }
+    return {
+      lat: 40.707862584146326,
+      lon: -74.00943611212904,
+    };
   }
 }
