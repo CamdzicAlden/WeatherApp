@@ -111,7 +111,7 @@ const server = http.createServer(async (req, res) => {
 
     //If path name is /locationFromIP
   } else if (pathname === "/locationFromIP") {
-    const result = await fetch("https://ipapi.co/json/");
+    const result = await fetch("https://ipwho.is/");
     const data = await result.json();
     //Write header and return json as a string
     res.writeHead(200, { "Content-Type": "application/json" });
