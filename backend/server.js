@@ -13,6 +13,15 @@ const cache = new Map();
 const server = http.createServer(async (req, res) => {
   //Allow access to data from all origins to prevent CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight OPTIONS requests
+  if (req.method === "OPTIONS") {
+    res.writeHead(200);
+    res.end();
+    return;
+  }
 
   //Making url object
   const url = new URL(req.url, `http://${req.headers.host}`);
