@@ -5,7 +5,7 @@ export async function fetchCurrentWeather(location) {
     const { lat, lon } = location;
     //Async fetching
     const res = await fetch(
-      `http://192.168.0.17:5000/currentWeather?lat=${lat}&lon=${lon}`,
+      `https://weatherapp-q5ti.onrender.com/currentWeather?lat=${lat}&lon=${lon}`,
     );
 
     //If status is not ok
@@ -45,7 +45,7 @@ export async function fetchForecast(location) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `http://192.168.0.17:5000/forecastWeather?lat=${lat}&lon=${lon}&days=3`,
+      `https://weatherapp-q5ti.onrender.com/forecastWeather?lat=${lat}&lon=${lon}&days=3`,
     );
 
     //If status is not ok
@@ -65,7 +65,7 @@ export async function fetchAstronomy(location) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `http://192.168.0.17:5000/astronomy?lat=${lat}&lon=${lon}`,
+      `https://weatherapp-q5ti.onrender.com/astronomy?lat=${lat}&lon=${lon}`,
     );
 
     //If status is not ok
@@ -85,7 +85,7 @@ export async function fetchHistory(location, dt) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `http://192.168.0.17:5000/historyWeather?lat=${lat}&lon=${lon}&dt=${dt}`,
+      `https://weatherapp-q5ti.onrender.com/historyWeather?lat=${lat}&lon=${lon}&dt=${dt}`,
     );
 
     //If status is not ok
@@ -102,7 +102,9 @@ export async function fetchHistory(location, dt) {
 export async function fetchSearch(city) {
   try {
     //Async fetch
-    const res = await fetch(`http://192.168.0.17:5000/searchCity?city=${city}`);
+    const res = await fetch(
+      `https://weatherapp-q5ti.onrender.com/searchCity?city=${city}`,
+    );
 
     //If status is not ok
     if (!res.ok) throw new Error(`Server error ${res.status}`);
