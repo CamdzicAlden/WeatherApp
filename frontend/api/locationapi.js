@@ -13,8 +13,8 @@ export async function resolveUserLocation() {
   } catch {
     // If user declines GPS
     return {
-      lat: 40.707862584146326,
-      lon: -74.00943611212904,
+      lat: 40.707,
+      lon: -74.009,
     };
   }
 }
