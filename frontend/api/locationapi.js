@@ -14,7 +14,9 @@ export async function resolveUserLocation() {
     // If user declines GPS
     try {
       //Use ipapi.co api for getting coords from IP
-      const res = await fetch("http://192.168.0.17:5000/locationFromIP");
+      const res = await fetch(
+        "https://weatherapp-q5ti.onrender.com/locationFromIP",
+      );
       const data = await res.json();
 
       return {
