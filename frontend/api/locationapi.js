@@ -14,7 +14,7 @@ export async function resolveUserLocation() {
     // If user declines GPS
     try {
       //Use ipwho.is api for getting coords from IP
-      const res = await fetch("https://ipwho.is/");
+      const res = await fetch("http://ip-api.com/json/");
       const data = await res.json();
 
       return {
