@@ -9,7 +9,7 @@ function SevenDayForecast({ weekForecast, yesterday }) {
       {/* 7-DAY FORECAST text container */}
       <div className="h-[10%] w-[100%] flex justify-start items-center">
         <p
-          className="text-[clamp(0.9rem,1vw,5rem)] [text-shadow:0_clamp(0.1rem,0.2vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
+          className="text-[clamp(0.9rem,1vw,5rem)] [text-shadow:0_clamp(0.05rem,0.2vh,5rem)_clamp(0.1rem,0.3vh,5rem)_rgba(0,0,0,0.25)]"
           style={{ fontFamily: "MontserratBold" }}
         >
           7-DAY FORECAST

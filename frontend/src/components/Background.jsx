@@ -14,13 +14,15 @@ function Background({ blured = false }) {
       <BackgroundCircle top={65} left={65} />
       <BackgroundCircle top={100} left={100} />
 
-      <BackgroundRectangle top={90} left={5} />
-      <BackgroundRectangle top={108} left={6} />
-      <BackgroundRectangle top={80} left={-4} />
+      <div className="hidden lg:block fixed inset-0 w-full h-full">
+        <BackgroundRectangle top={90} left={5} />
+        <BackgroundRectangle top={108} left={6} />
+        <BackgroundRectangle top={80} left={-4} />
 
-      <BackgroundRectangle top={5} left={95} />
-      <BackgroundRectangle top={12} left={104} />
-      <BackgroundRectangle top={-12} left={94} />
+        <BackgroundRectangle top={5} left={95} />
+        <BackgroundRectangle top={12} left={104} />
+        <BackgroundRectangle top={-12} left={94} />
+      </div>
     </div>
   );
 }

@@ -52,7 +52,7 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
             />
 
             <p
-              className="text-[clamp(0.9rem,1vw,5rem)]"
+              className="text-[clamp(0.7rem,0.9vw,5rem)]"
               style={{ fontFamily: "Roboto" }}
             >
               {rainChance}%
@@ -63,13 +63,13 @@ function DayForecast({ dayNum, rainChance, minTemp, maxTemp, imageCode }) {
             <img
               src={imageText.imageDay}
               alt="Day Icon"
-              className="w-[clamp(2rem,2.5vw,10rem)] h-auto"
+              className="w-[clamp(2rem,2.4vw,10rem)] h-auto"
             />
 
             <img
               src={imageText.imageNight}
               alt="Night Icon"
-              className="w-[clamp(2rem,2.5vw,10rem)] h-auto"
+              className="w-[clamp(2rem,2.4vw,10rem)] h-auto"
             />
           </div>
         </div>

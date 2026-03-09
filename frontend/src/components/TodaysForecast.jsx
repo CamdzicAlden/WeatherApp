@@ -68,7 +68,7 @@ function TodaysForecast({ todaysForecast, isFullMoon }) {
     <div className="flex flex-col justify-evenly items-center w-[95dvw] h-[32vh] lg:w-[50dvw] lg:h-[35vh] rounded-[clamp(2rem,4dvw,10rem)] bg-[#1453B6] mx-auto my-[3%] px-[3%] lg:px-[1%] py-[1.5%] text-[#fafafa] shadow-[0_clamp(0.1rem,0.5vh,2rem)_clamp(0.1rem,1vh,10rem)_rgba(0,0,0,0.25)]">
       {/* Today's forecast paragraph */}
       <p
-        className="text-[clamp(0.9rem,1vw,5rem)] w-full text-left pl-0 lg:pl-[6%] [text-shadow:0_clamp(0.1rem,0.2vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
+        className="text-[clamp(0.9rem,1vw,5rem)] w-full text-left pl-0 lg:pl-[6%] [text-shadow:0_clamp(0.05rem,0.2vh,5rem)_clamp(0.1rem,0.5vh,5rem)_rgba(0,0,0,0.25)]"
         style={{ fontFamily: "MontserratBold" }}
       >
         TODAY'S FORECAST

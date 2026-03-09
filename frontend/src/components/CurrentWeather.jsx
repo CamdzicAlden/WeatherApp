@@ -39,7 +39,8 @@ function CurrentWeather({
       {/* Location tag */}
       <CityTag city={city} onClick={onCityClicked} />
 
-      <div className="flex flex-col justify-center items-center">
+      {/* Image and weather text container */}
+      <div className="flex flex-col justify-center items-center gap-1">
         {/* Current weather image */}
         <img
           //Conditionally set src attribute
