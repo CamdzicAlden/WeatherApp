@@ -32,10 +32,10 @@ async function fetchAndSend(res, endpoint, queryParams = {}) {
 //Making http server
 const server = http.createServer(async (req, res) => {
   //Allow access to data from all origins to prevent CORS
-  res.setHeader(
-    "Access-Control-Allow-Origin",
+  res.setHeader("Access-Control-Allow-Origin", [
+    "https://l.instagram.com",
     "https://weather-app-six-flax-79.vercel.app",
-  );
+  ]);
 
   //Making url object
   const url = new URL(req.url, `http://${req.headers.host}`);
