@@ -14,7 +14,13 @@ import getYesterdayDate from "./getYesterdayDate.js";
 //Helper function for getting weatherData and loading state
 export default function fetchWeather(city) {
   const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({
+    current: true,
+    forecast: true,
+    forecastOpenMeteo: true,
+    astronomy: true,
+    history: true,
+  });
 
   //Getting yesterday date
   const yesterdayDate = getYesterdayDate();
@@ -23,50 +29,73 @@ export default function fetchWeather(city) {
   useEffect(() => {
     if (!city.lat || !city.lon) return;
 
-    setLoading(true);
+    // --- CURRENT WEATHER FIRST ---
+    fetchCurrentWeather(city)
+      .then((currentData) => {
+        setWeatherData((prev) => ({
+          ...prev,
+          current: currentData.current,
+          cityName: currentData.location.name,
+        }));
+        setLoading((prev) => ({ ...prev, current: false }));
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading((prev) => ({ ...prev, current: false }));
+      });
 
-    //Method calling all apis at once and waiting all of them to resolve
-    const fetchData = () => {
-      Promise.all([
-        fetchCurrentWeather(city),
-        fetchForecast(city),
-        fetchForecastOpenMeteo(city),
-        fetchAstronomy(city),
-        fetchHistory(city, yesterdayDate),
-      ])
-        //Destructure result array
-        .then(
-          ([
-            currentData,
-            forecastData,
-            forecastDataOpenMeteo,
-            astronomyData,
-            historyData,
-          ]) => {
-            //Update weatherData with object containing api data
-            setWeatherData({
-              current: currentData.current,
-              forecast: forecastData.forecast,
-              forecastOpenMeteo: forecastDataOpenMeteo.daily,
-              astronomy: astronomyData.astronomy.astro,
-              history: historyData.forecast.forecastday,
-              cityName: currentData.location.name,
-            });
-            setLoading(false);
-          },
-        )
-        .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
-    };
+    // --- OTHER DATA IN PARALLEL ---
+    fetchForecast(city)
+      .then((forecastData) => {
+        setWeatherData((prev) => ({
+          ...prev,
+          forecast: forecastData.forecast,
+        }));
+        setLoading((prev) => ({ ...prev, forecast: false }));
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading((prev) => ({ ...prev, forecast: false }));
+      });
 
-    fetchData();
+    fetchForecastOpenMeteo(city)
+      .then((forecastDataOpenMeteo) => {
+        setWeatherData((prev) => ({
+          ...prev,
+          forecastOpenMeteo: forecastDataOpenMeteo.daily,
+        }));
+        setLoading((prev) => ({ ...prev, forecastOpenMeteo: false }));
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading((prev) => ({ ...prev, forecastOpenMeteo: false }));
+      });
 
-    //Refetch API data every 3 minutes
-    const intervalID = setInterval(fetchData, 180000);
+    fetchAstronomy(city)
+      .then((astronomyData) => {
+        setWeatherData((prev) => ({
+          ...prev,
+          astronomy: astronomyData.astronomy.astro,
+        }));
+        setLoading((prev) => ({ ...prev, astronomy: false }));
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading((prev) => ({ ...prev, astronomy: false }));
+      });
 
-    return () => clearInterval(intervalID);
+    fetchHistory(city, yesterdayDate)
+      .then((historyData) => {
+        setWeatherData((prev) => ({
+          ...prev,
+          history: historyData.forecast.forecastday,
+        }));
+        setLoading((prev) => ({ ...prev, history: false }));
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading((prev) => ({ ...prev, history: false }));
+      });
   }, [city, yesterdayDate]);
 
   return { weatherData, loading };

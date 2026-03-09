@@ -45,7 +45,7 @@ export async function fetchForecast(location) {
     const { lat, lon } = location;
     //Async fetch
     const res = await fetch(
-      `https://weatherapp-q5ti.onrender.com/forecastWeather?lat=${lat}&lon=${lon}&days=3`,
+      `https://weatherapp-q5ti.onrender.com/forecastWeather?lat=${lat}&lon=${lon}&days=2`,
     );
 
     //If status is not ok

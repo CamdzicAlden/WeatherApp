@@ -50,7 +50,7 @@ function App() {
   }, [showPopup]);
 
   //Display loading while data is loading
-  if (!weatherData || loading) {
+  if (!weatherData?.current || !weatherData?.forecast?.forecastday) {
     return (
       <>
         <Background blured={true} />
@@ -91,18 +91,20 @@ function App() {
         weatherCode={weatherData.current.condition.code}
         isDay={weatherData.current.is_day}
         isFullMoon={
-          weatherData.astronomy.moon_phase === "Full Moon" ? true : false
+          weatherData.astronomy?.moon_phase === "Full Moon" ? true : false
         }
         currentTemp={Math.round(weatherData.current.temp_c)}
         today={today}
         onCityClicked={() => setShowPopup(true)}
+        loading={loading.forecast}
       />
 
       <TodaysForecast
         todaysForecast={todaysForecast}
         isFullMoon={
-          weatherData.astronomy.moon_phase === "Full Moon" ? true : false
+          weatherData.astronomy?.moon_phase === "Full Moon" ? true : false
         }
+        loading={loading.forecast && loading.astronomy}
       />
 
       <div className="flex flex-col lg:flex-row justify-center items-center w-full my-[3%] gap-7">
@@ -110,11 +112,13 @@ function App() {
           <SevenDayForecast
             weekForecast={weatherData.forecastOpenMeteo}
             yesterday={weatherData.history[0].day}
+            loading={loading.forecastOpenMeteo && loading.history}
           />
           <div className="hidden lg:flex flex-col justify-center items-center">
             <SunriseSunset
-              sunrise={weatherData.astronomy.sunrise}
-              sunset={weatherData.astronomy.sunset}
+              sunrise={weatherData.astronomy?.sunrise}
+              sunset={weatherData.astronomy?.sunset}
+              loading={loading.astronomy}
             />
           </div>
         </div>
@@ -132,7 +136,10 @@ function App() {
               speed={weatherData.current.wind_kph}
               direction={weatherData.current.wind_dir}
             />
-            <MoonPhase moonPhase={weatherData.astronomy.moon_phase} />
+            <MoonPhase
+              moonPhase={weatherData.astronomy?.moon_phase}
+              loading={loading.astronomy}
+            />
           </div>
         </div>
       </div>
@@ -141,6 +148,7 @@ function App() {
         <SunriseSunset
           sunrise={weatherData.astronomy.sunrise}
           sunset={weatherData.astronomy.sunset}
+          loading={loading.astronomy}
         />
       </div>
 

@@ -4,7 +4,9 @@ import VerticalLine from "./VerticalLine";
 import { useRef, useState, useEffect } from "react";
 
 //Component for displaying today's forecast
-function TodaysForecast({ todaysForecast, isFullMoon }) {
+function TodaysForecast({ todaysForecast, isFullMoon, loading }) {
+  if (loading) return <p>Loading...</p>;
+
   //Getting current time epoch in ms
   const now = Date.now();
   //Extracting next 24 hours

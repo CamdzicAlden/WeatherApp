@@ -4,8 +4,10 @@ import moonImage from "../helpers/moonPhaseHelper";
 import Loading from "./Loading";
 
 //Component for displaying moon phase
-function MoonPhase({ moonPhase }) {
+function MoonPhase({ moonPhase, loading }) {
   const [moonImg, setMoonImg] = useState("");
+
+  if (loading) return <p>Loading...</p>;
 
   //Change image every time moonPhase changes
   useEffect(() => {

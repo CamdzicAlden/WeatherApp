@@ -2,7 +2,9 @@ import DayForecast from "./DayForecast";
 import HorizontalLine from "./HorizontalLine";
 
 //Component for displaying 7 day forecast
-function SevenDayForecast({ weekForecast, yesterday }) {
+function SevenDayForecast({ weekForecast, yesterday, loading }) {
+  if (loading) return <p>Loading...</p>;
+
   return (
     //Main flex container
     <div className="flex flex-col justify-evenly items-center w-[95dvw] h-[55vh] lg:w-[38dvw] lg:h-[70vh] rounded-[clamp(2rem,4dvw,10rem)] bg-[#1453B6] text-[#fafafa] px-[7%] py-[3%] shadow-[0_clamp(0.1rem,0.5vh,2rem)_clamp(0.1rem,1vh,10rem)_rgba(0,0,0,0.25)]">

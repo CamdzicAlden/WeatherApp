@@ -12,26 +12,24 @@ function CurrentWeather({
   currentTemp,
   today,
   onCityClicked,
+  loading,
 }) {
   //Variable holding object with weather condition text & images
-  const [currentWeather, setCurrentWeather] = useState(null);
   const [minTemp, setMinTemp] = useState(null);
   const [maxTemp, setMaxTemp] = useState(null);
 
+  //Display loading if no data to show
+  if (!weatherCode || loading) return <p>Loading...</p>;
+
   //Change current weather everytime weatherCode, day/night or fullMoon phase changes
-  useEffect(() => {
-    //Calling custom helper method
-    setCurrentWeather(getImageAndText(weatherCode));
-  }, [weatherCode, isDay, isFullMoon]);
+  //Calling custom helper method
+  const currentWeather = getImageAndText(weatherCode);
 
   //Change min and max temp every time today changes
   useEffect(() => {
     setMinTemp(Math.round(today.mintemp_c));
     setMaxTemp(Math.round(today.maxtemp_c));
   }, [today]);
-
-  //Display loading if no data to show
-  if (!currentWeather) return <p>Loading...</p>;
 
   return (
     //Main flex container
