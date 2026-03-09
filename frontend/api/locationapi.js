@@ -13,10 +13,8 @@ export async function resolveUserLocation() {
   } catch {
     // If user declines GPS
     try {
-      //Use ipapi.co api for getting coords from IP
-      const res = await fetch(
-        "https://weatherapp-q5ti.onrender.com/locationFromIP",
-      );
+      //Use ipwho.is api for getting coords from IP
+      const res = await fetch("https://ipwho.is/");
       const data = await res.json();
 
       return {
