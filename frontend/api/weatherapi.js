@@ -1,11 +1,11 @@
 //Method for fetching current weather api
-export async function fetchCurrentWeather(location) {
+export async function fetchWeatherData(location, dt) {
   try {
     //Extracting lat and lon from location object
     const { lat, lon } = location;
     //Async fetching
     const res = await fetch(
-      `https://weatherapp-q5ti.onrender.com/currentWeather?lat=${lat}&lon=${lon}`,
+      `https://weatherapp-q5ti.onrender.com/weatherData?lat=${lat}&lon=${lon}&dt=${dt}`,
     );
 
     //If status is not ok
@@ -14,7 +14,7 @@ export async function fetchCurrentWeather(location) {
     //Return json of the result
     return await res.json();
   } catch (err) {
-    console.error("fetchCurrentWeather: ", err.message);
+    console.error("fetchWeatherData: ", err.message);
   }
 }
 
@@ -35,66 +35,6 @@ export async function fetchForecastOpenMeteo(location) {
     return await res.json();
   } catch (err) {
     console.error("fetchForecast: ", err.message);
-  }
-}
-
-//Method for fetching forecast weather from weatherapi
-export async function fetchForecast(location) {
-  try {
-    //Extracting lat and lon from location object
-    const { lat, lon } = location;
-    //Async fetch
-    const res = await fetch(
-      `https://weatherapp-q5ti.onrender.com/forecastWeather?lat=${lat}&lon=${lon}&days=2`,
-    );
-
-    //If status is not ok
-    if (!res.ok) throw new Error(`Server error ${res.status}`);
-
-    //Return json of the result
-    return await res.json();
-  } catch (err) {
-    console.error("fetchForecast: ", err.message);
-  }
-}
-
-//Method for fetching astronomy details
-export async function fetchAstronomy(location) {
-  try {
-    //Extracting lat and lon from location object
-    const { lat, lon } = location;
-    //Async fetch
-    const res = await fetch(
-      `https://weatherapp-q5ti.onrender.com/astronomy?lat=${lat}&lon=${lon}`,
-    );
-
-    //If status is not ok
-    if (!res.ok) throw new Error(`Server error ${res.status}`);
-
-    //Return json of the result
-    return await res.json();
-  } catch (err) {
-    console.error("fetchAstronomy: ", err.message);
-  }
-}
-
-//Method for fetching history
-export async function fetchHistory(location, dt) {
-  try {
-    //Extracting lat and lon from location object
-    const { lat, lon } = location;
-    //Async fetch
-    const res = await fetch(
-      `https://weatherapp-q5ti.onrender.com/historyWeather?lat=${lat}&lon=${lon}&dt=${dt}`,
-    );
-
-    //If status is not ok
-    if (!res.ok) throw new Error(`Server error ${res.status}`);
-
-    //Return json of the result
-    return await res.json();
-  } catch (err) {
-    console.error("fetchHistory: ", err.message);
   }
 }
 

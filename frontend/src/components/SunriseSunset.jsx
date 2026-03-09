@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useId } from "react";
 
 //Component for displaying sunrise and sunset with animation
-function SunriseSunset({ sunrise, sunset, loading }) {
+function SunriseSunset({ sunrise, sunset }) {
   const minutesInDay = 1439;
   const [currentTime, setCurrentTime] = useState(0);
   const pathRef = useRef(null);
@@ -11,8 +11,6 @@ function SunriseSunset({ sunrise, sunset, loading }) {
 
   const dayNightGradient = useId();
   const sunGradient = useId();
-
-  if (loading) return <p>Loading...</p>;
 
   //Function for getting day percent in 0.0 to 1.0 form
   function getTimePosition(time) {

@@ -12,14 +12,13 @@ function CurrentWeather({
   currentTemp,
   today,
   onCityClicked,
-  loading,
 }) {
   //Variable holding object with weather condition text & images
   const [minTemp, setMinTemp] = useState(null);
   const [maxTemp, setMaxTemp] = useState(null);
 
   //Display loading if no data to show
-  if (!weatherCode || loading) return <p>Loading...</p>;
+  if (!weatherCode) return <p>Loading...</p>;
 
   //Change current weather everytime weatherCode, day/night or fullMoon phase changes
   //Calling custom helper method
