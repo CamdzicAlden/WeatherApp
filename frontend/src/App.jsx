@@ -19,6 +19,8 @@ import Loading from "./components/Loading.jsx";
 
 //Importing method for fetching users location
 import { resolveUserLocation } from "../api/locationapi.js";
+
+//Importing helper method for weather fetching
 import fetchWeather from "./helpers/fetchWeather.js";
 
 function App() {

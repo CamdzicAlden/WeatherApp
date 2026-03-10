@@ -1,4 +1,4 @@
-//Method for fetching current weather api
+//Method for fetching weatherapi weather
 export async function fetchWeatherData(location, dt) {
   try {
     //Extracting lat and lon from location object

@@ -20,7 +20,6 @@ function CurrentWeather({
   //Display loading if no data to show
   if (!weatherCode) return <p>Loading...</p>;
 
-  //Change current weather everytime weatherCode, day/night or fullMoon phase changes
   //Calling custom helper method
   const currentWeather = getImageAndText(weatherCode);
 
@@ -32,12 +31,12 @@ function CurrentWeather({
 
   return (
     //Main flex container
-    <div className="flex flex-col justify-evenly items-center gap-5 text-[#fafafa] mt-[5%] lg:mt-[2%]">
+    <div className="flex flex-col justify-evenly items-center gap-5 text-[#fafafa] mt-[10%] lg:mt-[2%]">
       {/* Location tag */}
       <CityTag city={city} onClick={onCityClicked} />
 
       {/* Image and weather text container */}
-      <div className="flex flex-col justify-center items-center gap-1">
+      <div className="flex flex-col justify-center items-center gap-1.5">
         {/* Current weather image */}
         <img
           //Conditionally set src attribute
@@ -49,7 +48,7 @@ function CurrentWeather({
                 : currentWeather.imageNight
           }
           alt="I"
-          className="w-[clamp(11rem,14vw,50rem)] h-auto"
+          className={`${(isDay || isFullMoon) && currentWeather.text === "Clear" ? "w-[clamp(7rem,11vw,50rem)]" : "w-[clamp(11rem,14vw,50rem)]"} h-auto`}
         />
 
         {/* Paragraphs with weather text */}

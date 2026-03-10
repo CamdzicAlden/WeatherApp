@@ -22,7 +22,7 @@ const server = http.createServer(async (req, res) => {
   //Allow Content-Type in header
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Handle preflight (test request)
+  // Handle preflight (test request that some browsers send)
   if (req.method === "OPTIONS") {
     res.writeHead(200);
     res.end();

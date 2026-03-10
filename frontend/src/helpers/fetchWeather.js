@@ -16,22 +16,25 @@ export default function fetchWeather(city) {
     forecastOpenMeteo: true,
   });
 
-  //Getting yesterday date
-  const yesterdayDate = getYesterdayDate();
-
   //useEffect runs every time city changes
   useEffect(() => {
     if (!city.lat || !city.lon) return;
 
+    //Getting yesterday date
+    const yesterdayDate = getYesterdayDate();
+
+    //Reset loading to true
     setLoading({
       weather: true,
       forecastOpenMeteo: true,
     });
 
-    // --- CURRENT WEATHER FIRST ---
+    //Calling fetchWeatherData method
     fetchWeatherData(city, yesterdayDate)
       .then((currentData) => {
+        //Update weather data
         setWeatherData((prev) => ({ ...prev, ...currentData }));
+        //Update loading
         setLoading((prev) => ({ ...prev, weather: false }));
       })
       .catch((err) => {
@@ -39,12 +42,16 @@ export default function fetchWeather(city) {
         setLoading((prev) => ({ ...prev, weather: false }));
       });
 
+    //Calling fetchForecastOpenMeteo method
     fetchForecastOpenMeteo(city)
       .then((forecastDataOpenMeteo) => {
+        //Update weather
         setWeatherData((prev) => ({
           ...prev,
           forecastOpenMeteo: forecastDataOpenMeteo.daily,
         }));
+
+        //Update loading
         setLoading((prev) => ({ ...prev, forecastOpenMeteo: false }));
       })
       .catch((err) => {
