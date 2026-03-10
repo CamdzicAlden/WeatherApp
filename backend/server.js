@@ -1,5 +1,6 @@
 import http from "http";
 import dotenv from "dotenv";
+import he from "he";
 
 dotenv.config();
 
@@ -122,6 +123,11 @@ const server = http.createServer(async (req, res) => {
       `${BASE_URL}/search.json?key=${API_KEY}&q=${city}`,
     );
     const data = await result.json();
+
+    //Using he library to decode every html entity before sending it to frontend
+    data.forEach((city) => {
+      city.name = he.decode(city.name);
+    });
 
     //Write header and return data as string
     res.writeHead(200, { "Content-Type": "application/json" });
