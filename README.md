@@ -12,7 +12,9 @@ Stay informed with temperature, weather conditions, and more — all in a simple
 <br><br>
 
 <p align="center">
-    <img src="./resources/Landing.png" alt="Landing" height="300"> 
+    <img src="./resources/Landing.png" alt="Landing" height="220">
+    &nbsp;&nbsp;
+    <img src="./resources/Other.png" alt="Landing" height="220"> 
 </p>
 
 ## 🖥️ Demo
@@ -28,6 +30,7 @@ Stay informed with temperature, weather conditions, and more — all in a simple
 - [How to use ☁️](#how-to-use-)
 - [Features ✨](#features-)
 - [Technologies Used 🛠️](#technologies-used)
+- [API 🌐](#api-)
 - [Installation & Setup 📥](#installation-&-setup)
 - [Author 👤](#author-)
 - [License 📄](#license-)
@@ -66,8 +69,17 @@ Stay informed with temperature, weather conditions, and more — all in a simple
 | 🌐 HTML5        | Basic page structure                    |
 | 📝 JavaScript   | App logic and interactivity             |
 | 🟢 Node.js      | Backend server                          |
+| ⚡ Vercel       | Frontend hosting                        |
+| 🌐 Render       | Backend server hosting                  |
 
 ---
+
+## API 🌐
+
+This application uses two weather data providers:
+
+- [weatherapi.com](https://www.weatherapi.com/) - Provides most of the weather data including current conditions, humidity, wind speed, UV index, visibility, AQI, and astronomy data.
+- [open-meteo.com](https://open-meteo.com/) - Used specifically for retrieving the 7-day weather forecast.
 
 <h2 id="installation-&-setup">Installation & Setup 📥</h2>
 
